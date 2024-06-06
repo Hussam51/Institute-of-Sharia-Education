@@ -77,8 +77,10 @@ class WeekController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(WeekTable $weekTable)
     {
-        //
+        $weekTable->delete();
+        toastr()->warning('Deleted Successfully');
+        return redirect()->route('dashboard.week_tables.index');
     }
 }

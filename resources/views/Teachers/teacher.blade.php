@@ -54,6 +54,7 @@
                                 <th>رقم الهاتف </th>
                                 <th>الايميل </th>
                                 <th>المادة </th>
+                                <th>الصورة الشخصية </th>
                                 <th>الصفوف الدراسية</th>
                                 <th>العمليات </th>
                             </tr>
@@ -69,6 +70,8 @@
                                     <td>{{ $teacher->phone }}</td>
                                     <td>{{ $teacher->email }}</td>
                                     <td>{{ $teacher->subject->name }}</td>
+                                    <td><img src="{{ $teacher->getImageUrl() }}" alt="Student Image" height="60px"
+                                            width="60px"></td>
                                     <td>
                                         {{ implode(' - ', $teacher->classrooms->pluck('name')->toArray()) }}
 
@@ -79,7 +82,7 @@
                                             data-target="#edit{{ $teacher->id }}" title="تعديل"><i
                                                 class="fa fa-edit"></i></button>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#delete{{ $teacher->id }}" title="حذف"><i
+                                            data-target="#delete{{$teacher->id}}" title="حذف"><i
                                                 class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
@@ -118,7 +121,7 @@
                                                                 :</label>
                                                             <input id="last_name" type="text" name="last_name"
                                                                 class="form-control"
-                                                              value="{{ old('last_name', $teacher->last_name) }}">
+                                                                value="{{ old('last_name', $teacher->last_name) }}">
                                                         </div>
 
                                                         <div class="col">
@@ -155,7 +158,7 @@
 
                                                                     @selected($tc->id == $classroom->id) @endforeach>
 
-                                                                        {{ $classroom->name}}</option>
+                                                                        {{ $classroom->name }}</option>
                                                                 @endforeach
                                                             @endforeach
                                                         </select>
@@ -180,15 +183,25 @@
                                                             @endforeach
                                                         </select>
 
+                                                        <div class="row">
 
-                                                    </div>
-                                                    <br><br>
+                                                            <div class="col">
+                                                                <label> صورة شخصية :<i style="color: red">jpg or
+                                                                        png</i></label>
+                                                                <input type="file" name="image"
+                                                                    class="form-control">
 
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">إغلاق</button>
-                                                        <button type="submit" class="btn btn-success">حفظ</button>
-                                                    </div>
+
+
+                                                            </div>
+                                                            <br><br>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">إغلاق</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-success">حفظ</button>
+                                                            </div>
                                                 </form>
 
                                             </div>
@@ -197,7 +210,7 @@
                                 </div>
 
                                 <!-- delete_modal_Grade -->
-                                <div class="modal fade" id="delete{{ $teacher->id }}" tabindex="-1"
+                                <div class="modal fade" id="delete{{$teacher->id}}" tabindex="-1"
                                     role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -228,6 +241,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                             @endforeach
                     </table>
                 </div>
@@ -252,7 +266,8 @@
                 </div>
                 <div class="modal-body">
                     <!-- add_form -->
-                    <form action="{{ route('dashboard.teachers.store') }}" method="POST">
+                    <form action="{{ route('dashboard.teachers.store') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col">
@@ -301,7 +316,7 @@
                                 اختر الصفوف :</label>
                             <select multiple class="form-control" name="classrooms[]" id="classrooms" rows="3"
                                 required>
-                               
+
                             </select>
 
                             <label for="subject_id">
@@ -312,14 +327,22 @@
                                 @endforeach
                             </select>
 
-                           
+
+                        </div>
+                        <div class="col">
+                            <label> صورة شخصية :<i style="color: red">jpg or
+                                    png</i></label>
+                            <input type="file" name="image" class="form-control">
+
+
+
                         </div>
                         <br><br>
-                </div>
-                <div class="modal-footer">
+                 </div>
+                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
                     <button type="submit" class="btn btn-success">حفظ</button>
-                </div>
+                  </div>
                 </form>
 
             </div>
@@ -335,8 +358,8 @@
 @toastr_render
 
 <script>
-    $(document).ready(function () {
-        $('select[name="department_id"]').on('change', function () {
+    $(document).ready(function() {
+        $('select[name="department_id"]').on('change', function() {
             var department_id = $(this).val();
             if (department_id) {
 
@@ -345,18 +368,18 @@
                     url: "{{ URL::to('dashboard/depclasses') }}/" + department_id,
                     type: "GET",
                     dataType: "json",
-                    success: function (data) {
+                    success: function(data) {
                         $('select[name="classrooms[]"]').empty();
-                        $.each(data, function (key, value) {
-                           
-                            $('select[name="classrooms[]"]').append('<option value="' + key + '">' + value + '</option>');
+                        $.each(data, function(key, value) {
+
+                            $('select[name="classrooms[]"]').append(
+                                '<option value="' + key + '">' + value +
+                                '</option>');
                         });
 
                     },
                 });
-            }
-
-            else {
+            } else {
                 console.log('AJAX load did not work');
             }
         });

@@ -38,7 +38,7 @@ class ClassroomRepository implements ClassroomRepositoryInterface
     {
 
         try {
-            $classroom->update($request->validated());
+            $classroom->update($request);
             toastr()->info('updated successfully');
             return redirect()->route('dashboard.classrooms.index');
         } catch (Exception $e) {

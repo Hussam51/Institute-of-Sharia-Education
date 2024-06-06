@@ -6,7 +6,7 @@
                 <ul class="nav navbar-nav side-menu" id="sidebarnav">
 
                     <!-- menu title -->
-                    <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title"> اهلا بك يا </li>
+                    <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">  اهلا بك يا {{Auth::user()->name}} </li>
                     <!-- menu item Elements-->
                 {{--
                     <li>
@@ -127,7 +127,8 @@
                         <ul id="students" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{route('dashboard.students.index')}}">قائمة الطلاب </a> </li>
                             <li> <a href="{{route('dashboard.students.create')}}"> اضافة طالب </a> </li>
-
+                            
+                            <li> <a href="{{route('dashboard.classroom_students')}}">   تقارير معلومات الطلاب   </a> </li> 
                         </ul>
                     </li>
 
@@ -191,8 +192,7 @@
                         </a>
                         <ul id="exam_tables" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{route('dashboard.exam_tables.index')}}">قائمة الصفوف الدراسية</a> </li>
-                            <li> <a href="themify-icons.html">Themify icons</a> </li>
-                            <li> <a href="weather-icon.html">Weather icons</a> </li>
+                          
                         </ul>
                     </li>
 
@@ -206,8 +206,7 @@
                         </a>
                         <ul id="week_tables" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{route('dashboard.week_tables.index')}}">قائمة الصفوف الدراسية</a> </li>
-                            <li> <a href="themify-icons.html">Themify icons</a> </li>
-                            <li> <a href="weather-icon.html">Weather icons</a> </li>
+                         
                         </ul>
                     </li>
 
@@ -226,8 +225,7 @@
                         </a>
                         <ul id="notes" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{route('dashboard.classrooms.index')}}">قائمة الصفوف الدراسية</a> </li>
-                            <li> <a href="themify-icons.html">Themify icons</a> </li>
-                            <li> <a href="weather-icon.html">Weather icons</a> </li>
+                         
                         </ul>
                     </li>
 
@@ -243,8 +241,7 @@
                         </a>
                         <ul id="library" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{route('dashboard.classrooms.index')}}">قائمة الصفوف الدراسية</a> </li>
-                            <li> <a href="themify-icons.html">Themify icons</a> </li>
-                            <li> <a href="weather-icon.html">Weather icons</a> </li>
+                          
                         </ul>
                     </li>
 
@@ -260,8 +257,7 @@
                         </a>
                         <ul id="tables" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{route('dashboard.classrooms.index')}}">قائمة الصفوف الدراسية</a> </li>
-                            <li> <a href="themify-icons.html">Themify icons</a> </li>
-                            <li> <a href="weather-icon.html">Weather icons</a> </li>
+                           
                         </ul>
                     </li>
                     <!-- menu title -->

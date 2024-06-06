@@ -36,15 +36,15 @@
                 <br><br>
 
                 <div class="table-responsive">
-                    <form action="{{ route('dashboard.classrooms.delete-checked') }}" method="POST"
+                  {{--  <form action="{{ route('dashboard.classrooms.delete-checked') }}" method="POST"
                         id="deleteCheckedForm">
                         @csrf
-
+                     --}}
                         <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                             data-page-length="50" style="text-align: center">
                             <thead>
                                 <tr>
-                                    <th>حذف الصفوف المحددة</th>
+                                   {{-- <th>حذف الصفوف المحددة</th>--}}
                                     <th>#</th>
                                     <th>إسم الصف</th>
                                     <th>القسم</th>
@@ -57,7 +57,7 @@
                                 @foreach ($classrooms as $classroom)
                                     <tr>
                                         <?php $i++; ?>
-                                        <td>
+                                       {{-- <td>
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input"
                                                     id="classroom_{{ $classroom->id }}" name="classrooms[]"
@@ -65,7 +65,8 @@
                                                 <label class="custom-control-label"
                                                     for="classroom_{{ $classroom->id }}"></label>
                                             </div>
-                                        </td>
+                                            
+                                        </td> --}}
                                         <td>{{ $i }}</td>
                                         <td>{{ $classroom->name }}</td>
                                         <td>{{ $classroom->department->name }}</td>
@@ -186,10 +187,10 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <button type="submit" class="btn btn-danger btn-sm"><i
+                    {{--    <button type="submit" class="btn btn-danger btn-sm"><i
                             class="fa fa-trash"></i> Delete Selected</button>
                     </form>
-
+                   --}}
 
                 </div>
             </div>

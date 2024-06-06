@@ -7,6 +7,7 @@ use App\Models\Classroom;
 use App\Models\Department;
 use App\Models\Subject;
 use App\Models\Teacher;
+use App\Traits\ImageTrait;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,6 +18,10 @@ class TeacherController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
+     use ImageTrait;
+
     public function index()
     {
         $departments = Department::all();
@@ -52,6 +57,11 @@ class TeacherController extends Controller
         $teacher->subject_id = $request->subject_id;
         $teacher->department_id = $request->department_id;
         $teacher->password = Hash::make($request->phone);
+        if ($img = $request->file('image')) {
+
+
+            $teacher->image = $this->UploadImage($img,'teachers');
+        }
         $teacher->save();
 
         $teacher->classrooms()->attach($request->input('classrooms'));
@@ -85,8 +95,18 @@ class TeacherController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Teacher $teacher)
-    {
-        $teacher->update($request->except('classrooms'));
+    { 
+        $input=$request->except('classrooms','image');
+
+        if ($request->phone) {
+            $input['password'] = Hash::make($request->phone);
+        }
+        if ($img = $request->hasFile('image')) {
+            $this->deleteImage($teacher->image);
+            $input['image']=$this->uploadImage($img,'teachers');
+        }
+
+        $teacher->update($input);
         $teacher->classrooms()->sync($request->classrooms);
         toastr('Teacher created successfully','warning');
         return redirect()->route('dashboard.teachers.index');

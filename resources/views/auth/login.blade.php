@@ -72,7 +72,7 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-image: url('https://th.bing.com/th?id=OIP.CgdGH8EZ-USsBya38O4c9AHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2');
+      background-image: url('assets/images/background.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -80,7 +80,7 @@
     /* Image Styles */
     .login-image {
       flex: 1;
-      background-image: url('https://th.bing.com/th?id=OIP.7tB_aKu0mNIYOT5ctu6TugHaFO&w=297&h=210&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2');
+      background-image: url('assets/images/photo-logo.jpg');
       background-size: cover;
       background-position: center;
       border-radius: 0 10px 10px 0;
@@ -100,16 +100,18 @@
     }
   </style>
 </head>
-<body>
+<body> <h1 style="color:red;padding-left:430px;">Welcome To Dashboard</h1>
   <div class="login-container">
     <div class="login-card">
       <div class="login-form">
+       
         <h2>Login</h2>
         <form method="POST" action="{{ route('login') }}">
           @csrf
 
           <div class="row mb-3">
               <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+
 
               <div class="col-md-6">
                   <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -122,6 +124,7 @@
               </div>
           </div>
 
+          
           <div class="row mb-3">
               <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 

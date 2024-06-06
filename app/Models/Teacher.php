@@ -4,11 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-class Teacher extends Model
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class Teacher extends Authenticatable implements JWTSubject
 {
     use HasFactory;
-    protected $fillable = ['first_name','last_name','phone', 'email','password','subject_id','monitor_id','department_id','fingerPrint'];
+    protected $fillable = ['first_name','last_name','phone', 'email','password','subject_id','monitor_id','department_id','fingerPrint','image'];
+
+// get image url
+    public function getImageUrl()
+    {
+        if ($this->image) {
+            return asset($this->image);
+        }
+      else
+        return asset('assets/images/profile-avatar.jpg'); // توجد صورة افتراضية للطلاب في حالة عدم وجود صورة
+    }
+
 
     public function subject()
     {
@@ -18,5 +30,21 @@ class Teacher extends Model
     public function classrooms()
     {
         return $this->belongsToMany(Classroom::class,'teacher_classrooms','teacher_id','classroom_id');
+    }
+
+    
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }

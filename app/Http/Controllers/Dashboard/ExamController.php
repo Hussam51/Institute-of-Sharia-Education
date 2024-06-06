@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Classroom;
+use App\Models\Exam;
+use Exception;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -12,7 +15,8 @@ class ExamController extends Controller
      */
     public function index()
     {
-        //
+        $classrooms=Classroom::all();
+        return view('ExamTables.classrooms',compact('classrooms'));
     }
 
     /**
@@ -28,7 +32,18 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+
+            foreach ($request->list_classes as $list_class) {
+            
+               $list= Exam::create($list_class);
+              
+            }
+            toastr()->success('created successfully');
+            return redirect()->route('dashboard.exam_tables.show',$request->classroom_id);
+        } catch (Exception $e) {
+          //  return redirect()->back()->withErrors("Warning", $e->getMessage());
+        }
     }
 
     /**
@@ -36,7 +51,10 @@ class ExamController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $classroom=Classroom::find($id)->first();
+       $tables=Exam::where('classroom_id',$id)->get();
+       $subjects=$classroom->subjects;
+       return view('ExamTables.index',compact('tables','classroom','subjects'));
     }
 
     /**
@@ -52,7 +70,7 @@ class ExamController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         dd($request->term);
     }
 
     /**
@@ -60,6 +78,10 @@ class ExamController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+          $exam= Exam::findOrfail($id);
+          $classId=$exam->classroom->id;
+          $exam->delete();
+          toastr()->warning('Deleted Successfully');
+        return redirect()->route('dashboard.exam_tables.show',$classId);
     }
 }

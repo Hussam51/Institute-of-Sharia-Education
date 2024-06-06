@@ -76,7 +76,7 @@ class ClassroomController extends Controller
     public function update(updateClassroomRequest $request, Classroom $classroom)
     {
 
-        return $this->classroomRepository->update($request, $classroom);
+        return $this->classroomRepository->update($request->all(), $classroom);
     }
 
     /**

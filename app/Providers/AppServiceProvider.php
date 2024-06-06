@@ -13,6 +13,7 @@ use App\Repositories\Department\DepartmentRepository;
 use App\Repositories\Subject\SubjectRepositoryInterface;
 use App\Repositories\Subject\SubjectRepository;
 use App\Repositories\WeekTable\WeekTableRepositoryInterface ;
+use Livewire\Livewire;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+       
         $this->app->bind(ClassroomRepositoryInterface::class,ClassroomRepository::class);
         $this->app->bind(TeacherRepositoryInterface::class,TeacherRepository::class);
         $this->app->bind(DepartmentRepositoryInterface::class,DepartmentRepository::class);

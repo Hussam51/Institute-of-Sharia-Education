@@ -101,7 +101,7 @@ class StudentController extends Controller
             $input=$request->except('image');
 
             if ($request->phone) {
-                $request->merge(['password' => Hash::make($request->phone)]);
+                $input['password'] = Hash::make($request->phone);
             }
             if ($img = $request->hasFile('image')) {
                 $this->deleteImage($student->image);

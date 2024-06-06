@@ -57,7 +57,7 @@
                                         <td>{{ $classroom->name }}</td>
                                         <td>{{ $classroom->department->name }}</td>
                                         <td class="att">
-                                            <a href="{{route('dashboard.exam_tables.show',$classroom->id)}}" style="color: rgb(255, 255, 255);background-color: rgb(255, 0, 0)" class="fa-sm"> ⚙ إدارة الحضور   </a>
+                                            <a href="{{route('dashboard.exam_tables.show',$classroom->id)}}" style="color: rgb(255, 255, 255);background-color: rgb(145, 255, 0)" class="fa-sm">  الامتحانات    </a>
                                         </td>
                                     </tr>
                                     
