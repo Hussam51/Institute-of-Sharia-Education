@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('advisers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('password')->unique();
+            $table->string('password');
+            $table->string('photo')->nullable();
+            $table->integer('phone');
+            $table->foreignId('department_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

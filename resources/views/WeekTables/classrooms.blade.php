@@ -2,14 +2,14 @@
 @section('css')
     @toastr_css
 @section('title')
-    الصفوف الدراسية
+الدرجات
 @stop
 @endsection
 @section('page-header')
 <!-- breadcrumb -->
- برنامج الدوام/ الصفوف الدراسية
+ الدرجات / الصفوف الدراسية
 @section('PageTitle')
-    الصفوف الدراسية
+    الدرجات 
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -43,8 +43,8 @@
                                 <tr>
                                     <th>#</th>
                                     <th>إسم الصف</th>
-                                    <th>القسم</th>
-                                    <th>برنامج الدوام</th>
+                                    
+                                    <th>الدرجات  </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,9 +55,8 @@
                                         <?php $i++; ?>
                                         <td>{{ $i }}</td>
                                         <td>{{ $classroom->name }}</td>
-                                        <td>{{ $classroom->department->name }}</td>
                                         <td class="att">
-                                            <a href="{{route('dashboard.week_tables.show',$classroom->id)}}" style="color: rgb(255, 255, 255);background-color: rgb(35, 107, 6)" class="fa-sm"> عرض جدول الدوام   </a>
+                                            <a href="{{route('dashboard.quiz_results.show',$classroom->id)}}" class="btn btn-success btn-sm" style="color: rgb(233, 255, 36);background-color: rgb(35, 107, 6)" class="fa-sm">  قائمة الدرجات   </a>
                                         </td>
                                     </tr>
                                     

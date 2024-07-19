@@ -8,6 +8,7 @@ use App\Models\Table;
 use App\Models\WeekTable;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WeekController extends Controller
 {
@@ -16,7 +17,8 @@ class WeekController extends Controller
      */
     public function index()
     {
-        $classrooms=Classroom::all();
+        $department_id=Auth::user()->department_id;
+        $classrooms=Classroom::where('department_id',$department_id)->get();
         return view('WeekTables.classrooms',compact('classrooms'));
     }
 

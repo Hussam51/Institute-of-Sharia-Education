@@ -3,12 +3,13 @@
         <!-- Left Sidebar start-->
         <div class="side-menu-fixed">
             <div class="scrollbar side-menu-bg">
-                <ul class="nav navbar-nav side-menu" id="sidebarnav">
+                <ul class="nav navbar-nav side-menu" id="sidebarnav" style="background-color:rgb(216, 168, 37)">
 
                     <!-- menu title -->
-                    <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">  اهلا بك يا {{Auth::user()->name}} </li>
+                    <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title"> اهلا بك {{ Auth::user()->name }}
+                    </li>
                     <!-- menu item Elements-->
-                {{--
+                    {{--
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#elements">
                             <div class="pull-left"><i class="ti-palette"></i><span
@@ -40,7 +41,7 @@
                     </li>
                 --}}
                     <!-- menu item calendar-->
-                {{--
+                    {{--
                       <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#calendar-menu">
                             <div class="pull-left"><i class="ti-calendar"></i><span
@@ -55,7 +56,7 @@
                     </li>
                 --}}
 
-
+                    {{--
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#chart">
                             <div class="pull-left"><i class="ti-menu-alt"></i><span
@@ -64,60 +65,81 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="chart" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('dashboard.departments.index')}}"> الاقسام </a> </li>
+                            <li> <a href="{{ route('dashboard.departments.index') }}"> الاقسام </a> </li>
 
 
                         </ul>
                     </li>
-
+--}}
                     <!-- menu font icon-->
 
-                   <!-- classrooms management -->
+                    <!-- classrooms management -->
+
+                    <li> <a href="{{ route('dashboard.classrooms.index') }}"> <i class="ti-home"></i><span
+                                class="right-nav-text">
+                                قائمة الصفوف الدراسية </span></a> </li>
+
+                    <!-- Subjects management -->
+
+
+                    <li> <a href="{{ route('dashboard.subjects.index') }}"> <i class="fa fa-book"></i><span
+                                class="right-nav-text">
+                                إدارة المواد الدراسية </span></a> </li>
+
+                    <!-- teachers management -->
+                    {{-- 
+                            <li> <a href="{{ route('dashboard.teachers.index') }}">  <i>
+                                <svg height="25px" width="25px" version="1.1" id="Capa_1"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="-2.81 -2.81 33.67 33.67" xml:space="preserve" fill="#000000"
+                                    stroke="#000000" transform="rotate(0)" stroke-width="0.7294039999999999">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                    </g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <g>
+                                            <path style="fill:#f2f2f2;"
+                                                d="M27.961,1.867v11.204c0,0.319-0.258,0.578-0.578,0.578H12.144c-0.319,0-0.578-0.259-0.578-0.578 v-0.885l1.156-0.775v1.082h14.082V2.444H12.721v4.229c-0.051,0.039-0.106,0.073-0.154,0.117l-0.162,0.112 c-0.195-0.51-0.492-0.912-0.839-1.242V1.867c0-0.319,0.26-0.578,0.578-0.578h15.239C27.703,1.289,27.961,1.547,27.961,1.867z M14.316,9.461l0.692-0.464h-0.001c0.001-0.004,0.003-0.004,0.005-0.007c0.352-0.349,0.406-0.868,0.188-1.277l5.599-3.799 l-0.254-0.375l-5.646,3.83c-0.177-0.128-0.375-0.209-0.583-0.216c-0.296-0.01-0.597,0.09-0.823,0.317c0,0-0.005,0.006-0.007,0.006 l-0.138,0.096l-1.254,0.856V8.064c-0.233-2.769-3.442-2.728-3.442-2.728h-1.39L6.094,7.258L4.92,5.337H3.587 c-3.621,0.068-3.493,2.727-3.493,2.727v6.206h0.002c0.001,0.016-0.002,0.035-0.002,0.048c0,0.591,0.477,1.066,1.066,1.066 c0.587,0,1.064-0.477,1.064-1.066c0-0.013,0-0.032-0.002-0.048h0.002V8.53H2.89L2.882,26.613c0,0.795,0.646,1.441,1.438,1.441 c0.795,0,1.439-0.646,1.439-1.441v-11.67H6.4v11.683l0.012,0.013c0.01,0.781,0.646,1.415,1.432,1.415 c0.789,0,1.431-0.643,1.431-1.432L9.271,8.5h0.693v1.888c0,0.002,0,0.007,0,0.009c0,0.587,0.477,1.065,1.063,1.065 c0.173,0,0.328-0.049,0.475-0.125l0.005,0.007l1.84-1.234L14.316,9.461z M6.073,4.874c1.346,0,2.437-1.091,2.437-2.437 S7.419,0,6.073,0S3.636,1.092,3.636,2.437S4.727,4.874,6.073,4.874z">
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </i><span class="right-nav-text">إدارة المعلمين</span> </a> </li>
+                                   --}}
                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#font-icon">
-                            <div class="pull-left"><i class="ti-home"></i><span class="right-nav-text">
-                                    الصفوف الدراسية </span></div>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#teachers">
+                            <div class="pull-left"><i> <svg height="25px" width="25px" version="1.1" id="Capa_1"
+                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        viewBox="-2.81 -2.81 33.67 33.67" xml:space="preserve" fill="#000000"
+                                        stroke="#000000" transform="rotate(0)" stroke-width="0.7294039999999999">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <g>
+                                                <path style="fill:#f2f2f2;"
+                                                    d="M27.961,1.867v11.204c0,0.319-0.258,0.578-0.578,0.578H12.144c-0.319,0-0.578-0.259-0.578-0.578 v-0.885l1.156-0.775v1.082h14.082V2.444H12.721v4.229c-0.051,0.039-0.106,0.073-0.154,0.117l-0.162,0.112 c-0.195-0.51-0.492-0.912-0.839-1.242V1.867c0-0.319,0.26-0.578,0.578-0.578h15.239C27.703,1.289,27.961,1.547,27.961,1.867z M14.316,9.461l0.692-0.464h-0.001c0.001-0.004,0.003-0.004,0.005-0.007c0.352-0.349,0.406-0.868,0.188-1.277l5.599-3.799 l-0.254-0.375l-5.646,3.83c-0.177-0.128-0.375-0.209-0.583-0.216c-0.296-0.01-0.597,0.09-0.823,0.317c0,0-0.005,0.006-0.007,0.006 l-0.138,0.096l-1.254,0.856V8.064c-0.233-2.769-3.442-2.728-3.442-2.728h-1.39L6.094,7.258L4.92,5.337H3.587 c-3.621,0.068-3.493,2.727-3.493,2.727v6.206h0.002c0.001,0.016-0.002,0.035-0.002,0.048c0,0.591,0.477,1.066,1.066,1.066 c0.587,0,1.064-0.477,1.064-1.066c0-0.013,0-0.032-0.002-0.048h0.002V8.53H2.89L2.882,26.613c0,0.795,0.646,1.441,1.438,1.441 c0.795,0,1.439-0.646,1.439-1.441v-11.67H6.4v11.683l0.012,0.013c0.01,0.781,0.646,1.415,1.432,1.415 c0.789,0,1.431-0.643,1.431-1.432L9.271,8.5h0.693v1.888c0,0.002,0,0.007,0,0.009c0,0.587,0.477,1.065,1.063,1.065 c0.173,0,0.328-0.049,0.475-0.125l0.005,0.007l1.84-1.234L14.316,9.461z M6.073,4.874c1.346,0,2.437-1.091,2.437-2.437 S7.419,0,6.073,0S3.636,1.092,3.636,2.437S4.727,4.874,6.073,4.874z">
+                                                </path>
+                                            </g>
+                                        </g>
+                                    </svg></i><span class="right-nav-text">
+                                    إدارة المعلمين </span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
-                        <ul id="font-icon" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('dashboard.classrooms.index')}}">قائمة الصفوف الدراسية </a> </li>
-
-                        </ul>
-                    </li>
-
-                      <!-- Subjects management -->
-                      <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#subjects">
-                            <div class="pull-left"><i class="fa fa-book"></i><span class="right-nav-text">
-                                     إدارة المواد الدراسية </span></div>
-                            <div class="pull-right"><i class="ti-plus"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="subjects" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('dashboard.subjects.index')}}">قائمة المواد الدراسية</a> </li>
-
-                        </ul>
-                    </li>
-                     <!-- teachers management -->
-                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#teacher">
-                            <div class="pull-left"><i >
-                                <svg height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-2.81 -2.81 33.67 33.67" xml:space="preserve" fill="#000000" stroke="#000000" transform="rotate(0)" stroke-width="0.7294039999999999"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path style="fill:#f2f2f2;" d="M27.961,1.867v11.204c0,0.319-0.258,0.578-0.578,0.578H12.144c-0.319,0-0.578-0.259-0.578-0.578 v-0.885l1.156-0.775v1.082h14.082V2.444H12.721v4.229c-0.051,0.039-0.106,0.073-0.154,0.117l-0.162,0.112 c-0.195-0.51-0.492-0.912-0.839-1.242V1.867c0-0.319,0.26-0.578,0.578-0.578h15.239C27.703,1.289,27.961,1.547,27.961,1.867z M14.316,9.461l0.692-0.464h-0.001c0.001-0.004,0.003-0.004,0.005-0.007c0.352-0.349,0.406-0.868,0.188-1.277l5.599-3.799 l-0.254-0.375l-5.646,3.83c-0.177-0.128-0.375-0.209-0.583-0.216c-0.296-0.01-0.597,0.09-0.823,0.317c0,0-0.005,0.006-0.007,0.006 l-0.138,0.096l-1.254,0.856V8.064c-0.233-2.769-3.442-2.728-3.442-2.728h-1.39L6.094,7.258L4.92,5.337H3.587 c-3.621,0.068-3.493,2.727-3.493,2.727v6.206h0.002c0.001,0.016-0.002,0.035-0.002,0.048c0,0.591,0.477,1.066,1.066,1.066 c0.587,0,1.064-0.477,1.064-1.066c0-0.013,0-0.032-0.002-0.048h0.002V8.53H2.89L2.882,26.613c0,0.795,0.646,1.441,1.438,1.441 c0.795,0,1.439-0.646,1.439-1.441v-11.67H6.4v11.683l0.012,0.013c0.01,0.781,0.646,1.415,1.432,1.415 c0.789,0,1.431-0.643,1.431-1.432L9.271,8.5h0.693v1.888c0,0.002,0,0.007,0,0.009c0,0.587,0.477,1.065,1.063,1.065 c0.173,0,0.328-0.049,0.475-0.125l0.005,0.007l1.84-1.234L14.316,9.461z M6.073,4.874c1.346,0,2.437-1.091,2.437-2.437 S7.419,0,6.073,0S3.636,1.092,3.636,2.437S4.727,4.874,6.073,4.874z"></path> </g> </g></svg>
-                                </i><span
-                                    class="right-nav-text">إدارة المعلمين</span></div>
-                            <div class="pull-right"><i class="ti-plus"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="teacher" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('dashboard.teachers.index')}}"> قائمة المعلمين </a> </li>
+                        <ul id="teachers" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('dashboard.teachers.index') }}">قائمة المعلمين </a> </li>
+                            <li> <a href="{{ route('dashboard.teacher_weekTable.index') }}"> جدول دوام المعلمين </a> </li>
+                            <li> <a href="{{ route('dashboard.teacher_monitorings.index') }}">  مراقبة المعلمين </a> </li>
 
 
                         </ul>
                     </li>
 
-                     <!-- students  management -->
-                     <li>
+
+
+                    <!-- students  management -->
+                    <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#students">
                             <div class="pull-left"><i class="fa fa-group"></i><span class="right-nav-text">
                                     إدارة الطلاب </span></div>
@@ -125,143 +147,274 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="students" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('dashboard.students.index')}}">قائمة الطلاب </a> </li>
-                            <li> <a href="{{route('dashboard.students.create')}}"> اضافة طالب </a> </li>
-                            
-                            <li> <a href="{{route('dashboard.classroom_students')}}">   تقارير معلومات الطلاب   </a> </li> 
+                            <li> <a href="{{ route('dashboard.students.index') }}">قائمة الطلاب </a> </li>
+                            <li> <a href="{{ route('dashboard.students.create') }}"> اضافة طالب </a> </li>
+
+                            <li> <a href="{{ route('dashboard.classroom_students') }}"> تقارير معلومات الطلاب </a> </li>
                         </ul>
                     </li>
 
 
 
-                     <!-- parents management -->
-                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#parents">
-                            <div class="pull-left"><i ><svg height="16px" width="16px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#ffffff;} </style> <g> <path class="st0" d="M165.865,85.55c23.636,0,42.779-19.159,42.779-42.77C208.644,19.142,189.501,0,165.865,0 c-23.636,0-42.779,19.142-42.779,42.779C123.086,66.391,142.229,85.55,165.865,85.55z"></path> <path class="st0" d="M222.061,97.624H109.669c-20.726,0-43.274,22.548-43.274,43.282v143.768c0,10.363,8.396,18.767,18.758,18.767 c10.363,0,18.775-8.404,18.775-18.767V166.469h8.651v320.88c0,13.616,11.035,24.651,24.644,24.651 c13.625,0,24.66-11.035,24.66-24.651V301.138h7.964v186.211c0,13.616,11.035,24.651,24.66,24.651 c13.609,0,24.644-11.035,24.644-24.651v-320.88h8.668v118.204c0,10.363,8.396,18.767,18.758,18.767 c10.379,0,18.759-8.404,18.759-18.767V140.906C265.335,120.172,242.787,97.624,222.061,97.624z"></path> <path class="st0" d="M373.041,256.72c19.206,0,34.758-15.568,34.758-34.751c0-19.206-15.552-34.759-34.758-34.759 c-19.206,0-34.758,15.552-34.758,34.759C338.283,241.152,353.835,256.72,373.041,256.72z"></path> <path class="st0" d="M412.989,278.117h-84.718c-15.616,0-32.616,16.992-32.616,32.624v75.482c0,7.812,6.333,14.145,14.137,14.145 c7.812,0,14.153-6.333,14.153-14.145v-56.212h6.525v163.407c0,10.267,8.316,18.582,18.566,18.582 c10.275,0,18.592-8.316,18.592-18.582v-94.785h6.005v94.785c0,10.267,8.316,18.582,18.582,18.582 c10.259,0,18.582-8.316,18.582-18.582V330.011h6.525v56.212c0,7.812,6.332,14.145,14.137,14.145 c7.828,0,14.144-6.333,14.144-14.145v-75.482C445.605,295.108,428.614,278.117,412.989,278.117z"></path> </g> </g></svg></i><span class="right-nav-text">
-                                     إدارة أولياء الأمور </span></div>
-                            <div class="pull-right"><i class="ti-plus"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="parents" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('dashboard.classrooms.index')}}">قائمة اولياء الامور </a> </li>
+                    <!-- parents management -->
 
-                        </ul>
-                    </li>
+
+                    <li class="pull-left"> <a href="{{ route('dashboard.parents.index') }}"><i><svg height="16px"
+                                    width="16px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"
+                                    xml:space="preserve" fill="#000000">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                    </g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <style type="text/css">
+                                            .st0 {
+                                                fill: #ffffff;
+                                            }
+                                        </style>
+                                        <g>
+                                            <path class="st0"
+                                                d="M165.865,85.55c23.636,0,42.779-19.159,42.779-42.77C208.644,19.142,189.501,0,165.865,0 c-23.636,0-42.779,19.142-42.779,42.779C123.086,66.391,142.229,85.55,165.865,85.55z">
+                                            </path>
+                                            <path class="st0"
+                                                d="M222.061,97.624H109.669c-20.726,0-43.274,22.548-43.274,43.282v143.768c0,10.363,8.396,18.767,18.758,18.767 c10.363,0,18.775-8.404,18.775-18.767V166.469h8.651v320.88c0,13.616,11.035,24.651,24.644,24.651 c13.625,0,24.66-11.035,24.66-24.651V301.138h7.964v186.211c0,13.616,11.035,24.651,24.66,24.651 c13.609,0,24.644-11.035,24.644-24.651v-320.88h8.668v118.204c0,10.363,8.396,18.767,18.758,18.767 c10.379,0,18.759-8.404,18.759-18.767V140.906C265.335,120.172,242.787,97.624,222.061,97.624z">
+                                            </path>
+                                            <path class="st0"
+                                                d="M373.041,256.72c19.206,0,34.758-15.568,34.758-34.751c0-19.206-15.552-34.759-34.758-34.759 c-19.206,0-34.758,15.552-34.758,34.759C338.283,241.152,353.835,256.72,373.041,256.72z">
+                                            </path>
+                                            <path class="st0"
+                                                d="M412.989,278.117h-84.718c-15.616,0-32.616,16.992-32.616,32.624v75.482c0,7.812,6.333,14.145,14.137,14.145 c7.812,0,14.153-6.333,14.153-14.145v-56.212h6.525v163.407c0,10.267,8.316,18.582,18.566,18.582 c10.275,0,18.592-8.316,18.592-18.582v-94.785h6.005v94.785c0,10.267,8.316,18.582,18.582,18.582 c10.259,0,18.582-8.316,18.582-18.582V330.011h6.525v56.212c0,7.812,6.332,14.145,14.137,14.145 c7.828,0,14.144-6.333,14.144-14.145v-75.482C445.605,295.108,428.614,278.117,412.989,278.117z">
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg></i><span class="right-nav-text">
+                                إدارة أولياء الأمور </span></a> </li>
+
+
 
 
                     <!-- attendance management -->
-                    <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#attendence">
-                            <div class="pull-left"><i ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
-                                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                              </svg></i><span class="right-nav-text">
-                                     إدارة  الحضور </span></div>
-                            <div class="pull-right"><i class="ti-plus"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="attendence" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('dashboard.attendences.index')}}">  إدارة حضور الطلاب</a> </li>
-                            <li> <a href="#">إدارة حضور المعلمين </a> </li>
 
-                        </ul>
-                    </li>
-                     <!-- Results management -->
-                     <li>
+
+                    <li> <a href="{{ route('dashboard.attendences.index') }}" class="pull-left"><i><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-person-check-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0" />
+                                    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                                </svg></i><span class="right-nav-text">
+                                إدارة الحضور </span></a> </li>
+
+
+                    <!-- Results management -->
+                    {{--        <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#results">
-                            <div class="pull-left"><i ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
-                                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
-                                <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
-                              </svg></i><span class="right-nav-text">
-                                     إدارة النتائج  </span></div>
+                            <div class="pull-left"><i><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi bi-card-checklist"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
+                                        <path
+                                            d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0" />
+                                    </svg></i><span class="right-nav-text">
+                                    إدارة النتائج </span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="results" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('dashboard.classrooms.index')}}">قائمة الصفوف الدراسية</a> </li>
+                            <li> <a href="{{ route('dashboard.classrooms.index') }}">قائمة الصفوف الدراسية</a> </li>
 
                         </ul>
                     </li>
-                     <!--Exam Tables management -->
-                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#exam_tables">
-                            <div class="pull-left"><i class="fa fa-calendar"></i><span class="right-nav-text">
-                                     إدارة الجداول الامتحانية  </span></div>
-                            <div class="pull-right"><i class="ti-plus"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="exam_tables" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('dashboard.exam_tables.index')}}">قائمة الصفوف الدراسية</a> </li>
-                          
-                        </ul>
-                    </li>
+                --}}
 
-                     <!--Week Tables management -->
-                     <li>
+                    <!--Week Tables management -->
+                    <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#week_tables">
-                            <div class="pull-left"><i class="fa fa-calendar"></i><span class="right-nav-text">
-                                     إدارة جداول الدوام  </span></div>
+                            <div class="pull-left"><i><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi bi-card-checklist"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
+                                        <path
+                                            d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0" />
+                                    </svg></i><span class="right-nav-text">
+                                    الاختبارات والنتائج </span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="week_tables" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('dashboard.week_tables.index')}}">قائمة الصفوف الدراسية</a> </li>
-                         
+                            <li> <a href="{{ route('dashboard.quizzes.index') }}">قائمةالاختبارات</a> </li>
+                            <li> <a href="{{ route('dashboard.week_tables.index') }}"> قائمةالصفوف والدرجات </a> </li>
+
                         </ul>
                     </li>
 
-                     
 
-                     <!-- notes management -->
-                     <li>
+
+                    <!-- notes management -->
+                    {{--                    
+                    <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#notes">
-                            <div class="pull-left"><i ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-text" viewBox="0 0 16 16">
-                                <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
-                                <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
-                              </svg></i><span class="right-nav-text">
-                                     الملاحظات والأسألة </span></div>
+                            <div class="pull-left"><i><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi bi-chat-right-text"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                        <path
+                                            d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
+                                    </svg></i><span class="right-nav-text">
+                                    الملاحظات والأسألة </span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="notes" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('dashboard.classrooms.index')}}">قائمة الصفوف الدراسية</a> </li>
-                         
+                            <li> <a href="{{ route('dashboard.classrooms.index') }}">قائمة الصفوف الدراسية</a> </li>
+
                         </ul>
                     </li>
-
-                     <!-- Library management -->
-                     <li>
+--}}
+                    <!-- Library management -->
+                    <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#library">
-                            <div class="pull-left"><i ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
-                                <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
-                              </svg></i><span class="right-nav-text">
-                                     المكتبة    </span></div>
+                            <div class="pull-left"><i><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                                        <path
+                                            d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783" />
+                                    </svg></i><span class="right-nav-text">
+                                    المكتبة </span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="library" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('dashboard.classrooms.index')}}">قائمة الصفوف الدراسية</a> </li>
-                          
+                            <li> <a href="{{ route('dashboard.libraries.index') }}">الملفات الخاصة بالادارة </a> </li>
+                            <li> <a href="{{ route('dashboard.files-Pending-Requests') }}">طلبات الرفع المعلقة </a>
+                            </li>
+                            <li> <a href="{{ route('dashboard.files-Approved-Requests') }}">طلبات الرفع المقبولة </a>
+                            </li>
+                            <li> <a href="{{ route('dashboard.files-Rejected-Requests') }}">طلبات الرفع المرفوضة </a>
+                            </li>
+
                         </ul>
                     </li>
 
+
+                    <!-- Advertisement management -->
+
+
+                    <li> <a href="{{ route('dashboard.advertisements.index') }}"> <i><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-send-plus-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 1.59 2.498C8 14 8 13 8 12.5a4.5 4.5 0 0 1 5.026-4.47zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471z" />
+                                    <path
+                                        d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0m-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5" />
+                                </svg></i><span class="right-nav-text">
+                                الإعلانات </span> </a>
+                    </li>
+
+                    <li> <a href="{{ route('dashboard.parent-feedback') }}"> <i><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-send-plus-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 1.59 2.498C8 14 8 13 8 12.5a4.5 4.5 0 0 1 5.026-4.47zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471z" />
+                                    <path
+                                        d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0m-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5" />
+                                </svg></i><span class="right-nav-text">
+                                ملاحظات الأهل </span> </a>
+                    </li>
+
+
+
                     <!--Social guide management -->
+
+                    <li> <a href="{{ route('dashboard.advisers.index') }}" class="pull-left"> <i><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-chat-quote-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M16 8c0 3.866-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7M7.194 6.766a1.7 1.7 0 0 0-.227-.272 1.5 1.5 0 0 0-.469-.324l-.008-.004A1.8 1.8 0 0 0 5.734 6C4.776 6 4 6.746 4 7.667c0 .92.776 1.666 1.734 1.666.343 0 .662-.095.931-.26-.137.389-.39.804-.81 1.22a.405.405 0 0 0 .011.59c.173.16.447.155.614-.01 1.334-1.329 1.37-2.758.941-3.706a2.5 2.5 0 0 0-.227-.4zM11 9.073c-.136.389-.39.804-.81 1.22a.405.405 0 0 0 .012.59c.172.16.446.155.613-.01 1.334-1.329 1.37-2.758.942-3.706a2.5 2.5 0 0 0-.228-.4 1.7 1.7 0 0 0-.227-.273 1.5 1.5 0 0 0-.469-.324l-.008-.004A1.8 1.8 0 0 0 10.07 6c-.957 0-1.734.746-1.734 1.667 0 .92.777 1.666 1.734 1.666.343 0 .662-.095.931-.26z" />
+                                </svg></i><span class="right-nav-text">
+                                الإرشاد </span> </a>
+                    </li>
+                  
+
+                    <!--Exam Tables management -->
+
+
+                    <li> <a href="{{ route('dashboard.exam_tables.index') }}"> <i><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-table" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z" />
+                                </svg></i><span class="right-nav-text">
+                                الجداول الاسبوعية والإمتحانية </span></a> </li>
+
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#buses">
+                            <div class="pull-left"><i><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi bi-bus-front"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M5 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0m8 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-6-1a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2zm1-6c-1.876 0-3.426.109-4.552.226A.5.5 0 0 0 3 4.723v3.554a.5.5 0 0 0 .448.497C4.574 8.891 6.124 9 8 9s3.426-.109 4.552-.226A.5.5 0 0 0 13 8.277V4.723a.5.5 0 0 0-.448-.497A44 44 0 0 0 8 4m0-1c-1.837 0-3.353.107-4.448.22a.5.5 0 1 1-.104-.994A44 44 0 0 1 8 2c1.876 0 3.426.109 4.552.226a.5.5 0 1 1-.104.994A43 43 0 0 0 8 3" />
+                                        <path
+                                            d="M15 8a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1V2.64c0-1.188-.845-2.232-2.064-2.372A44 44 0 0 0 8 0C5.9 0 4.208.136 3.064.268 1.845.408 1 1.452 1 2.64V4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v3.5c0 .818.393 1.544 1 2v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V14h6v1.5a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-2c.607-.456 1-1.182 1-2zM8 1c2.056 0 3.71.134 4.822.261.676.078 1.178.66 1.178 1.379v8.86a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 11.5V2.64c0-.72.502-1.301 1.178-1.379A43 43 0 0 1 8 1" />
+                                    </svg></i></i><span class="right-nav-text">
+                                    الباصات والنقل </span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="buses" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('dashboard.buses.index') }}"> ادارة المواصلات</a> </li>
+                            <li> <a href="{{ route('dashboard.bus_notes.index') }}">  ملاحظات المواصلات</a> </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#beh">
+                            <div class="pull-left"><i> 🧾</i></i><span class="right-nav-text">
+                                    السلوك والواجبات </span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="beh" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('dashboard.behaviors.index') }}"> سلوك الطلاب</a> </li>
+                            <li> <a href="{{ route('dashboard.homeworks.index') }}"> واجبات الطلاب</a> </li>
+                        </ul>
+                    </li>
+
+                    <li> <a href="{{ route('dashboard.entertainments.index') }}" class="pull-left"> <i><svg
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" class="bi bi-chat-quote-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8c0 3.866-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7M7.194 6.766a1.7 1.7 0 0 0-.227-.272 1.5 1.5 0 0 0-.469-.324l-.008-.004A1.8 1.8 0 0 0 5.734 6C4.776 6 4 6.746 4 7.667c0 .92.776 1.666 1.734 1.666.343 0 .662-.095.931-.26-.137.389-.39.804-.81 1.22a.405.405 0 0 0 .011.59c.173.16.447.155.614-.01 1.334-1.329 1.37-2.758.941-3.706a2.5 2.5 0 0 0-.227-.4zM11 9.073c-.136.389-.39.804-.81 1.22a.405.405 0 0 0 .012.59c.172.16.446.155.613-.01 1.334-1.329 1.37-2.758.942-3.706a2.5 2.5 0 0 0-.228-.4 1.7 1.7 0 0 0-.227-.273 1.5 1.5 0 0 0-.469-.324l-.008-.004A1.8 1.8 0 0 0 10.07 6c-.957 0-1.734.746-1.734 1.667 0 .92.777 1.666 1.734 1.666.343 0 .662-.095.931-.26z" />
+                    </svg></i><span class="right-nav-text">
+                    قسم التسلية والترفيه </span> </a>
+        </li>
+
+
+                    <!--statistics   -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#tables">
-                            <div class="pull-left"><i ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-quote-fill" viewBox="0 0 16 16">
-                                <path d="M16 8c0 3.866-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7M7.194 6.766a1.7 1.7 0 0 0-.227-.272 1.5 1.5 0 0 0-.469-.324l-.008-.004A1.8 1.8 0 0 0 5.734 6C4.776 6 4 6.746 4 7.667c0 .92.776 1.666 1.734 1.666.343 0 .662-.095.931-.26-.137.389-.39.804-.81 1.22a.405.405 0 0 0 .011.59c.173.16.447.155.614-.01 1.334-1.329 1.37-2.758.941-3.706a2.5 2.5 0 0 0-.227-.4zM11 9.073c-.136.389-.39.804-.81 1.22a.405.405 0 0 0 .012.59c.172.16.446.155.613-.01 1.334-1.329 1.37-2.758.942-3.706a2.5 2.5 0 0 0-.228-.4 1.7 1.7 0 0 0-.227-.273 1.5 1.5 0 0 0-.469-.324l-.008-.004A1.8 1.8 0 0 0 10.07 6c-.957 0-1.734.746-1.734 1.667 0 .92.777 1.666 1.734 1.666.343 0 .662-.095.931-.26z"/>
-                              </svg></i></i><span class="right-nav-text">
-                                    المرشد الاجتماعي   </span></div>
-                            <div class="pull-right"><i ></div>
+                            <div class="pull-left"><i><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi bi-clipboard-data"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0z" />
+                                        <path
+                                            d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z" />
+                                        <path
+                                            d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z" />
+                                    </svg></i></i><span class="right-nav-text">
+                                    الاحصائيات والإعدادات </span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="tables" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('dashboard.classrooms.index')}}">قائمة الصفوف الدراسية</a> </li>
-                           
+                            <li> <a href="{{ route('home') }}"> الإحصائيات </a> </li>
+
                         </ul>
                     </li>
                     <!-- menu title -->
-                {{--
+                    {{--
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">Widgets, Forms & Tables </li>
                     <!-- menu item Widgets-->
                     <li>

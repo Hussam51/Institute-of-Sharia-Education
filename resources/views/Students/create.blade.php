@@ -46,8 +46,16 @@
                                     <input  class="form-control" name="last_name" type="text" required >
                                 </div>
                             </div>
+                            
                         </div>
-
+                        <div class="form-group">
+                                
+                            <label
+                                for="">كلمة المرور
+                                :</label>
+                                <input id="password" type="password" name="password"
+                                class="form-control fa-eye"required>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -85,24 +93,17 @@
                     <h6 style="font-family: 'Cairo', sans-serif;color: blue">معلومات الطالب الثانوية</h6><br>
                     <div class="row">
 
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="department_id">الاقسام الدراسية : <span class="text-danger">*</span></label>
-                                    <select class="custom-select mr-sm-2" name="department_id" required>
-                                        <option selected disabled>اختر القسم...</option>
-                                        @foreach($departments as $department)
-                                            <option  value="{{ $department->id }}">{{ $department->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+                           
 
 
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="classroom_id">الصف الدراسي : <span class="text-danger">*</span></label>
                                     <select class="custom-select mr-sm-2" name="classroom_id">
-
+                                        <option selected disabled>اختر صف --</option>
+                                     @foreach ($classrooms as $classroom)
+                                         <option value="{{$classroom->id}}">{{$classroom->name}}</option>
+                                     @endforeach
                                     </select>
                                 </div>
                             </div>

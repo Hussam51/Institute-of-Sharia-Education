@@ -8,6 +8,7 @@ use App\Models\Classroom;
 use App\Models\Department;
 use Exception;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class ClassroomRepository implements ClassroomRepositoryInterface
 {
@@ -24,7 +25,7 @@ class ClassroomRepository implements ClassroomRepositoryInterface
         try {
 
             foreach ($request->list_classes as $list_class) {
-
+               $list_class['department_id']=Auth::user()->department_id;
                 Classroom::create($list_class);
             }
             toastr()->success('created successfully');

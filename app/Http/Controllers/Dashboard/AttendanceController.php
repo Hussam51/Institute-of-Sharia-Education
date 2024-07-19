@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Dashboard;
+
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use App\Models\Classroom;
@@ -14,8 +15,8 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-      $classrooms=Classroom::all();
-      return view('Attendances.classrooms',compact('classrooms'));
+        $classrooms = Classroom::all();
+        return view('Attendances.classrooms', compact('classrooms'));
     }
 
     /**
@@ -31,34 +32,38 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-       
+
+
         try {
 
             foreach ($request->attendances as $student_id => $attendance) {
 
-                if( $attendance == 'presence' ) {
+
+                if ($attendance == 'presence') {
                     $attendance_status = true;
-                } else if( $attendance == 'absent' ){
+                } else if ($attendance == 'absent') {
+
                     $attendance_status = false;
                 }
 
-                Attendance::create([
-                    'student_id'=> $student_id,
-                    'department_id'=> $request->department_id,
-                    'classroom_id'=> $request->classroom_id,
-                   
-                    'attendance_date'=> date('Y-m-d'),
-                    'attendance_status'=> $attendance_status
-                ]);
+                $validatedData =[
+                    'student_id' => $student_id,
+                    'department_id' => $request->department_id,
+                    'classroom_id' => $request->classroom_id,
 
+                    'attendance_date' => date('Y-m-d'),
+                    'attendance_status' => $attendance_status
+                ];
+
+                if ($attendance == 'absent' && $request->has('absent_reason') ) {
+                    $validatedData['absent_reason'] = $request->absent_reason;
+                }
+                Attendance::create($validatedData);
             }
 
             toastr()->success('attecndences added successfully');
             return redirect()->back();
-
-        }
-
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
@@ -67,9 +72,10 @@ class AttendanceController extends Controller
      * Display the specified resource.
      */
     public function show($id)
-    {     $classroom=Classroom::find($id)->first();
-       $students=Student::where('classroom_id',$id)->with('attendances')->get();
-       return view('Attendances.classAttendances',compact('students','classroom'));
+    {
+        $classroom = Classroom::find($id)->first();
+        $students = Student::where('classroom_id', $id)->with('attendances')->get();
+        return view('Attendances.classAttendances', compact('students', 'classroom'));
     }
 
     /**

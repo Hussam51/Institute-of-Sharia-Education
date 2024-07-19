@@ -7,7 +7,7 @@
 @endsection
 @section('page-header')
 <!-- breadcrumb -->
-برنامج الامتحان/ الصفوف الدراسية
+البرامج الاسبوعية والامتحانية / الصفوف الدراسية
 @section('PageTitle')
     الصفوف الدراسية
 @stop
@@ -44,7 +44,7 @@
                                     <th>#</th>
                                     <th>إسم الصف</th>
                                     <th>القسم</th>
-                                    <th>برنامج الامتحانات</th>
+                                    <th> البرامج</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,7 +57,8 @@
                                         <td>{{ $classroom->name }}</td>
                                         <td>{{ $classroom->department->name }}</td>
                                         <td class="att">
-                                            <a href="{{route('dashboard.exam_tables.show',$classroom->id)}}" style="color: rgb(255, 255, 255);background-color: rgb(145, 255, 0)" class="fa-sm">  الامتحانات    </a>
+                                            <a href="{{route('dashboard.exam_tables.show',$classroom->id)}}" class="btn btn-success btn-sm" style="color: rgb(255, 255, 255);background-color: rgb(145, 255, 0)" class="fa-sm">  برنامج الإمتحان    </a>
+                                            <a href="{{route('dashboard.week_tables.show',$classroom->id)}}"class="btn btn-info btn-sm" style="color: rgb(255, 255, 255);background-color: rgb(109, 119, 247)" class="fa-sm">  برنامج الأسبوع    </a>
                                         </td>
                                     </tr>
                                     

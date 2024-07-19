@@ -81,12 +81,19 @@
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                             data-target="#edit{{ $teacher->id }}" title="تعديل"><i
                                                 class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#delete{{$teacher->id}}" title="حذف"><i
-                                                class="fa fa-trash"></i></button>
+                           
+                                                        <button form="teacher{{$teacher->id}}" type="submit" class="btn btn-danger btn-sm" ><i
+                                                            class="fa fa-trash"></i>
+                                                        </button>
+                                              
                                     </td>
                                 </tr>
+                                            <form id="teacher{{$teacher->id}}" action="{{ route('dashboard.teachers.destroy', $teacher->id) }}"
+                                                  method="post">
+                                                  {{ method_field('Delete') }}
+                                                  @csrf
 
+                                             </form>
                                 <!-- edit_modal_department -->
                                 <div class="modal fade" id="edit{{ $teacher->id }}" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -145,44 +152,31 @@
 
 
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="classrooms">
-                                                            select classroom :</label>
-                                                        <select class="form-control" name="classrooms" id="Classrooms"
-                                                            rows="3">
-                                                            @foreach ($departments as $department)
-                                                                @foreach ($department->classrooms as $classroom)
-                                                                    <option value="{{ $classroom->id }}"
-                                                                        @foreach ($teacher->classrooms as $tc)
+                                                    <div class="row">
 
-
-                                                                    @selected($tc->id == $classroom->id) @endforeach>
-
-                                                                        {{ $classroom->name }}</option>
+                                                        <div class="col-md-6">
+                                                            <label for="classroom[]">الصف <span class="text-danger">*</span></label>
+                                                            <select name="classrooms[]" multiple id="classrooms[]" class="custom-select mr-sm-2">
+                                                                <option disabled selected>اختر صف--</option>
+                                                                @foreach($classrooms as $classroom)
+                                                                    <option value="{{ $classroom->id }}" >{{ $classroom->name }}</option>
                                                                 @endforeach
+                                                            </select>
+                                                        </div>
+                                        
+                                                     <div class="col-md-6">
+                                                   
+                                                        <label for="subject_id"> المادة <span class="text-danger">*</span></label>
+                                                          <select name="subject_id" id="subject_id" class="custom-select mr-sm-2">
+                                                            <option disabled>اختر مادة--</option>
+                                                            @foreach($subjects as $subject)
+                                                                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                                                             @endforeach
-                                                        </select>
-
-                                                        <label for="subject_id">
-                                                            المادة :</label>
-                                                        <select class="form-control" name="subject_id" id="subject_id"
-                                                            rows="3" required>
-                                                            @foreach ($subjects as $subject)
-                                                                <option value="{{ $subject->id }}">
-                                                                    {{ $subject->name }}</option>
-                                                            @endforeach
-                                                        </select>
-
-                                                        <label for="department_id">
-                                                            القسم :</label>
-                                                        <select class="form-control" name="department_id"
-                                                            id="department_id" rows="3" required>
-                                                            @foreach ($departments as $department)
-                                                                <option value="{{ $department->id }}">
-                                                                    {{ $department->name }}</option>
-                                                            @endforeach
-                                                        </select>
-
+                                                            
+                                                          </select>
+                                                      </div>
+                                                   
+                                                    </div>
                                                         <div class="row">
 
                                                             <div class="col">
@@ -295,39 +289,39 @@
                                     :</label>
                                 <input id="email" type="email" name="email" class="form-control">
                             </div>
+                            <div class="col">
+                                <label for="password" class="mr-sm-2"> كلمة المرور
+                                    :</label>
+                                <input id="password" type="password" name="password" class="form-control" required>
+                            </div>
 
 
                         </div>
 
-                        <div class="form-group">
+                        <div class="row">
 
-                            <label for="department_id">
-                                القسم :</label>
-                            <select class="form-control" name="department_id" id="department_id" rows="3"
-                                required>
-                                @foreach ($departments as $department)
-                                    <option value="{{ $department->id }}"> {{ $department->name }}</option>
+                            <div class="col-md-6">
+                                <label for="classroom[]">الصف <span class="text-danger">*</span></label>
+                                <select name="classrooms[]" multiple id="classrooms[]" class="custom-select mr-sm-2">
+                                    <option disabled selected>اختر صف--</option>
+                                    @foreach($classrooms as $classroom)
+                                        <option value="{{ $classroom->id }}" >{{ $classroom->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+            
+                         <div class="col-md-6">
+                       
+                            <label for="subject_id"> المادة <span class="text-danger">*</span></label>
+                              <select name="subject_id" id="subject_id" class="custom-select mr-sm-2">
+                                <option disabled>اختر مادة--</option>
+                                @foreach($subjects as $subject)
+                                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                                 @endforeach
-                            </select>
-
-
-
-                            <label for="classrooms">
-                                اختر الصفوف :</label>
-                            <select multiple class="form-control" name="classrooms[]" id="classrooms" rows="3"
-                                required>
-
-                            </select>
-
-                            <label for="subject_id">
-                                المادة :</label>
-                            <select class="form-control" name="subject_id" id="subject_id" rows="3" required>
-                                @foreach ($subjects as $subject)
-                                    <option value="{{ $subject->id }}"> {{ $subject->name }}</option>
-                                @endforeach
-                            </select>
-
-
+                                
+                              </select>
+                          </div>
+                       
                         </div>
                         <div class="col">
                             <label> صورة شخصية :<i style="color: red">jpg or
@@ -356,8 +350,41 @@
 @section('js')
 @toastr_js
 @toastr_render
+{{--<script>
+    $(document).ready(function () {
+        $('select[name="classroom_id"]').on('change', function () {
+            var classroom_id = $(this).val();
+          
+            if (classroom_id) {
 
-<script>
+
+               
+            
+                $.ajax({
+
+                    url: "{{ URL::to('dashboard/class_subjects') }}/" + classroom_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="subject_id"]').empty();
+                        $('select[name="subject_id"]').append('<option selected disabled value="">' +' ..اختر مادة'+ '</option>');
+                        $.each(data, function (index, subject) {
+                          
+                            $('select[name="subject_id"]').append('<option value="' + subject.id + '">' + subject.name  + '</option>');
+                        });
+
+                    },
+                });
+            }
+
+            else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+</script>
+--}}
+{{--<script>
     $(document).ready(function() {
         $('select[name="department_id"]').on('change', function() {
             var department_id = $(this).val();
@@ -384,5 +411,5 @@
             }
         });
     });
-</script>
+</script>--}}
 @endsection

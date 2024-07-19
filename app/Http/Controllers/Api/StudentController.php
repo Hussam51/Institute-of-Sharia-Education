@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Library;
 use App\Models\WeekTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +30,7 @@ class StudentController extends Controller
      */
     public function login(Request $request){
     	$validator = Validator::make($request->all(), [
-            'email' => 'required|email',
+            'first_name' => 'required',
             'password' => 'required|string|min:6',
         ]);
 
@@ -100,5 +101,15 @@ class StudentController extends Controller
             'expires_in' => JWTAuth::factory()->getTTL() * 60,
             'user' => auth()->guard('student')->user()
         ]);
+    }
+
+
+    public function downloadPDF(string $id)
+    {
+       
+        $file = Library::findOrFail($id);
+     
+         $filePath=public_path('uploads\\'.$file->file_url) ;
+        return response()->download($filePath,$file->title.'.'.'pdf');
     }
 }

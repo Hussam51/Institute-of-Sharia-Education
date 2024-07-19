@@ -43,7 +43,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>إسم الصف</th>
-                                    <th>القسم</th>
+                                
                                     <th> العمليات</th>
                                 </tr>
                             </thead>
@@ -55,7 +55,7 @@
                                         <?php $i++; ?>
                                         <td>{{ $i }}</td>
                                         <td>{{ $classroom->name }}</td>
-                                        <td>{{ $classroom->department->name }}</td>
+                                      
                                         <td class="att">
                                             <a href="{{route('dashboard.students_report',$classroom->id)}}"  class="fa-sm" style="color: red"> تصدير تقرير  <i class="fa fa-download" ></i>  </a><hr>
                                             <a href="{{route('dashboard.view_students',$classroom->id)}}"  class="fa-sm" style="color: rgb(13, 118, 255)"> عرض الطلاب   <i class="fa fa-eye" ></i>  </a>

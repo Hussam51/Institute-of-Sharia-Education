@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('classroom_id')->constrained()->cascadeOnDelete();
             $table->foreignId('department_id')->constrained()->cascadeOnDelete();
             $table->date('attendance_date');
+             $table->string('absent_reason')->nullable();
             $table->timestamps();
         });
     }

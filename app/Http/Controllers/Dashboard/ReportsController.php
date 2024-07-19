@@ -3,16 +3,20 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use App\Models\Classroom;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
+
 class ReportsController extends Controller
 {
     public function all_students_report()
     {
-        $class_students = Classroom::with('students')->get();
-     
-    
+        $department_id=Auth::user()->department_id;
+        $class_students = Classroom::where('department_id',$department_id)
+        ->with('students')
+        ->get();
      
     
         $pdf = Pdf::loadView('reports.students', [
@@ -25,10 +29,8 @@ class ReportsController extends Controller
 
     public function classroom_students_report(string $id)
     {
-        $class_students = Classroom::find($id)
+        $class_students = Classroom::where('id',$id)
         ->with('students')->get();
-     
-    
      
     
         $pdf = Pdf::loadView('reports.students', [
@@ -41,9 +43,10 @@ class ReportsController extends Controller
     
     public function view_students(string $id)
     {
-        $class_students = Classroom::find($id)
+        $class_students = Classroom::where('id',$id)
         ->with('students')->get();
-     
+       // $attendences_absent=Attendance::where('attendance_status',0)->count();
+
     
      return view('reports.viewStudents',compact('class_students'));
     }

@@ -36,6 +36,12 @@ class Classroom extends Model
     {
 
         return $this->hasMany(Student::class, 'classroom_id', 'id');
+
+    }
+
+    public function quizes()
+    {
+        return $this->hasMany(Quiz::class, 'classroom_id','id');
     }
     
 }

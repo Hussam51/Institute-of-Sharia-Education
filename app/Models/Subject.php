@@ -24,5 +24,11 @@ class Subject extends Model
     public function classroom()
     {
         return $this->belongsTo(Classroom::class);
+
+    }
+
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class);
     }
 }

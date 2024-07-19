@@ -30,7 +30,7 @@
                     </div>
                 @endif
 
-                <form method="post"  action="{{ route('dashboard.students.update',$student->id) }}" autocomplete="off">
+                <form method="post"  action="{{ route('dashboard.students.update',$student->id) }}" autocomplete="off"enctype="multipart/form-data">
                     @csrf
                     @method('patch')
                     <h6 style="font-family: 'Cairo', sans-serif;color: blue"> معلومات الطالب الاساسية</h6><br>

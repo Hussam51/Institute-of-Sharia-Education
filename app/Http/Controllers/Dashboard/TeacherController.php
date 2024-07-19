@@ -10,6 +10,7 @@ use App\Models\Teacher;
 use App\Traits\ImageTrait;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -24,11 +25,13 @@ class TeacherController extends Controller
 
     public function index()
     {
-        $departments = Department::all();
+        $department_id=Auth::user()->department_id;
+
+        $classrooms= Classroom::where('department_id',$department_id)->get();
         $subjects = Subject::all();
-        $teachers = Teacher::all();
-        $classrooms = Classroom::all();
-        return view('Teachers.teacher', compact('departments', 'classrooms', 'teachers', 'subjects'));
+        $teachers = Teacher::where('department_id',$department_id)->get();
+     
+        return view('Teachers.teacher', compact('subjects','classrooms', 'teachers'));
     }
 
     /**
@@ -44,26 +47,28 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        
+       
         try{
 
             DB::beginTransaction();
-        //$teacher=Teacher::create($request->except('classrooms'));
+       // $teacher=Teacher::create($request->except('classrooms'));
         $teacher = new Teacher();
         $teacher->first_name = $request->first_name;
         $teacher->last_name = $request->last_name;
         $teacher->phone = $request->phone;
         $teacher->email = $request->email;
         $teacher->subject_id = $request->subject_id;
-        $teacher->department_id = $request->department_id;
-        $teacher->password = Hash::make($request->phone);
-        if ($img = $request->file('image')) {
+        $teacher->department_id = Auth::user()->department_id;
+       
+        $teacher->password = Hash::make($request->password);
+        if ( $request->hasFile('image')) {
 
 
-            $teacher->image = $this->UploadImage($img,'teachers');
+            $teacher->image = $this->UploadImage($request->file('image'),'teachers');
         }
+      
         $teacher->save();
-
+      
         $teacher->classrooms()->attach($request->input('classrooms'));
         toastr('teacher created successfully', 'success');
         DB::commit();
@@ -103,12 +108,12 @@ class TeacherController extends Controller
         }
         if ($img = $request->hasFile('image')) {
             $this->deleteImage($teacher->image);
-            $input['image']=$this->uploadImage($img,'teachers');
+            $input['image']=$this->uploadImage($request->file('image'),'teachers');
         }
 
         $teacher->update($input);
         $teacher->classrooms()->sync($request->classrooms);
-        toastr('Teacher created successfully','warning');
+        toastr('Teacher Update successfully','success','Teacher Update');
         return redirect()->route('dashboard.teachers.index');
     }
 

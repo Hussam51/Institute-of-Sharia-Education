@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('libraries', function (Blueprint $table) {
             $table->id();
-            $table->string('library_type');
+            $table->string('file_url');//
+            $table->string('title');
+            $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('teacher_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('classroom_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->enum('type',['book','document']);
+            $table->enum('status',['pending','rejected','approved'])->default('pending');
             $table->timestamps();
         });
     }

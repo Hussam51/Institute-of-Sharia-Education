@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Department extends Model
 {
     use HasFactory;
-    protected $fillable=["name","notes",'admin_id'];
+    protected $fillable=["name","notes"];
 
     // relationship between Classroom and Department
     public function classrooms(){
@@ -16,5 +16,8 @@ class Department extends Model
     }
     public function students(){
         return $this->hasMany(Student::class,"department_id","id");
+    }
+    public function admin(){
+        return $this->hasOne(User::class,'department_id','id');
     }
 }

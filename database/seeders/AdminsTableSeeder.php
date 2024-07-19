@@ -21,6 +21,7 @@ class AdminsTableSeeder extends Seeder
                 'name' => 'Mohammed Doe',
                 'email' => 'mohammed@gmail.com',
                 'password' => Hash::make('password'),
+                'department_id'=>1
               
             ]
         );
@@ -29,7 +30,7 @@ class AdminsTableSeeder extends Seeder
                 'name' => 'Ahmed Doe',
                 'email' => 'ahmed@gmail.com',
                 'password' => Hash::make('password'),
-              
+                'department_id'=>2
             ]
         );
     }

@@ -12,14 +12,19 @@ trait ImageTrait
     {
        
         $imageName=$img->getClientOriginalName();
-      return $imageUrl= $img->move($path,$imageName);
+
+         $imageUrl= $img->storeAs($path,$imageName,[
+            'disk'=>'uploads'
+        ]);
+        return $imageUrl;
+     // return $imageUrl= $img->move($path,$imageName);
     }
 
 
     public function deleteImage($imagePath)
 {
-    if (Storage::disk('public')->exists($imagePath)) {
-        Storage::disk('public')->delete($imagePath);
+    if (Storage::disk('uploads')->exists($imagePath)) {
+        Storage::disk('uploads')->delete($imagePath);
         return true;
     }
     

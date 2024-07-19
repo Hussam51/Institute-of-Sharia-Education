@@ -72,27 +72,42 @@
                                        class="leading-tight" type="checkbox" value="presence">
                                 <span class="text-success">حضور</span>
                             </label>
-
+                           
                             <label class="ml-4 block text-gray-500 font-semibold">
-                                <input name="attendances[{{ $student->id }}]" disabled
+                                <input  name="attendances[{{ $student->id }}]" disabled 
                                 @checked($student->attendances()->first()->attendance_status == 0 )
                                       
                                        class="leading-tight" type="checkbox" value="absent">
                                 <span class="text-danger">غياب</span>
+                                @if($student->attendances()->where('attendance_date',date('Y-m-d'))->first()->absent_reason !=null)
+                                <div id="absent-reason">
+                                    <div class="form-group">
+                                        <label for="absent_reason"> سبب الغياب  :</label>
+                                        <textarea name="absent_reason" id="absent_reason" class="form-control" disabled>{{$student->attendances()->first()->absent_reason}}</textarea>
+                                    </div>
+                                </div>
+                                @endif
                             </label>
+                           
 
                         @else
 
                             <label class="block text-gray-500 font-semibold sm:border-r sm:pr-4">
-                                <input name="attendances[{{ $student->id }}]" class="leading-tight" type="checkbox"
+                                <input id="attendance_presence" name="attendances[{{ $student->id }}]" class="leading-tight" type="checkbox"
                                        value="presence">
                                 <span class="text-success">حضور</span>
                             </label>
 
                             <label class="ml-4 block text-gray-500 font-semibold">
-                                <input name="attendances[{{ $student->id }}]" class="leading-tight" type="checkbox"
+                                <input id="attendance_absent" name="attendances[{{ $student->id }}]" class="leading-tight" type="checkbox"
                                        value="absent">
                                 <span class="text-danger">غياب</span>
+                                <div id="absent-reason" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="absent_reason">سبب الغياب  :</label>
+                                        <textarea name="absent_reason" id="absent_reason" class="form-control"></textarea>
+                                    </div>
+                                </div>
                             </label>
 
                         @endif
@@ -116,4 +131,41 @@
 @section('js')
     @toastr_js
     @toastr_render
+
+ {{--   <script>
+        $('#attendance_absent').on('change',function(e) {
+           
+                $('#absent-reason').show();
+          
+        });
+
+        $('#attendance_presence').on('change',function(e) {
+           
+           $('#absent-reason').hide();
+     
+        });
+    </script>
+    --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var presenceCheckbox = document.getElementById('attendance_presence');
+            var absentCheckbox = document.getElementById('attendance_absent');
+    
+            presenceCheckbox.addEventListener('change', function () {
+                if (presenceCheckbox.checked) {
+                    $('#absent-reason').hide();
+                    absentCheckbox.checked = false;
+
+                }
+            });
+    
+            absentCheckbox.addEventListener('change', function () {
+                if (absentCheckbox.checked) {
+                    presenceCheckbox.checked = false;
+                    $('#absent-reason').show();
+                }
+            });
+        });
+    </script>
+
 @endsection

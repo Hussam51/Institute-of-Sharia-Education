@@ -15,12 +15,15 @@ return new class extends Migration
     {
         Schema::create('homeworks', function (Blueprint $table) {
             $table->id();
-           $table->bigInteger('subject_id')->unsigned();
+            $table->bigInteger('subject_id')->unsigned();
             $table->foreign('subject_id')->references('id')->on('subjects')->cascadeOnDelete();
             $table->bigInteger('teacher_id')->unsigned();
             $table->foreign('teacher_id')->references('id')->on('teachers')->cascadeOnDelete();
+            $table->foreignId('classroom_id')->constrained('classrooms')->cascadeOnDelete();
             $table->string('homework_name');
-            $table->string('notes');
+            $table->enum('type',['homework','Review','lesson']);
+            $table->string('notes')->nullable();
+            $table->dateTime('date');
             $table->timestamps();
         });
     }

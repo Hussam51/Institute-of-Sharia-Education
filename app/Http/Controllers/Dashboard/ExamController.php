@@ -41,8 +41,9 @@ class ExamController extends Controller
             }
             toastr()->success('created successfully');
             return redirect()->route('dashboard.exam_tables.show',$request->classroom_id);
+
         } catch (Exception $e) {
-          //  return redirect()->back()->withErrors("Warning", $e->getMessage());
+           return redirect()->back()->withErrors("Warning", $e->getMessage());
         }
     }
 
@@ -51,7 +52,9 @@ class ExamController extends Controller
      */
     public function show(string $id)
     {
-        $classroom=Classroom::find($id)->first();
+       
+       $classroom=Classroom::where('id',$id)->first();
+      
        $tables=Exam::where('classroom_id',$id)->get();
        $subjects=$classroom->subjects;
        return view('ExamTables.index',compact('tables','classroom','subjects'));
@@ -70,7 +73,7 @@ class ExamController extends Controller
      */
     public function update(Request $request, string $id)
     {
-         dd($request->term);
+       
     }
 
     /**

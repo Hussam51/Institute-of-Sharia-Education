@@ -15,7 +15,7 @@ class Teacher extends Authenticatable implements JWTSubject
     public function getImageUrl()
     {
         if ($this->image) {
-            return asset($this->image);
+            return asset('uploads/'.$this->image);
         }
       else
         return asset('assets/images/profile-avatar.jpg'); // توجد صورة افتراضية للطلاب في حالة عدم وجود صورة

@@ -21,8 +21,8 @@ class updateClassroomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'list_classes.*.name'=>'required|unique:classrooms,name,'.$this->classroom->id,
-            'list_classes.*.department_id'=>'required'
+            'list_classes.*.name'=>'required|string|unique:classrooms,name,'.$this->classroom->id,
+        
         ];
     }
 }

@@ -9,6 +9,7 @@ use App\Models\Student;
 use App\Traits\ImageTrait;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
@@ -17,11 +18,11 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $departments = Department::all();
 
-        $students = Student::all();
+        $students = Student::filter($request->query())->get();
         $classrooms = Classroom::all();
         return view('Students.index', compact('departments', 'classrooms', 'students'));
     }
@@ -31,8 +32,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $departments = Department::all();
-        return view('Students.create', compact('departments'));
+        $classrooms = Classroom::where('department_id', Auth::user()->department_id)->get();
+        return view('Students.create', compact('classrooms'));
     }
 
     /**
@@ -51,11 +52,11 @@ class StudentController extends Controller
             $student->phone = $request->phone;
             $student->email = $request->email;
             $student->classroom_id = $request->classroom_id;
-            $student->department_id = $request->department_id;
-            $student->password = Hash::make($request->phone);
-            if ($img = $request->file('image')) {
+            $student->department_id = Auth::user()->department_id;
+            $student->password = Hash::make($request->password);
+            if ($request->hasFile('image')) {
 
-
+                  $img=$request->file('image');
                 $student->image = $this->UploadImage($img,'students');
             }
             $student->save();
@@ -72,7 +73,8 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        //
+         $student=Student::findOrFail($id)->first();
+      return view('Students.show',compact('student'));
     }
 
     public function departmentClassrooms(string $id)
@@ -95,17 +97,29 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, string $id)
     {
-        try {
-            $input=$request->except('image');
+        $student=Student::findOrFail($id);
+       
+        $oldImage=$student->image;
+        $input=$request->except('image');
 
-            if ($request->phone) {
-                $input['password'] = Hash::make($request->phone);
+        try {
+           
+         
+            if ($request->hasFile('image')) {
+                $img=$request->file('image');
+                
+                $input['image']=$this->uploadImage( $img,'students');
+               
+              
+              
             }
-            if ($img = $request->hasFile('image')) {
-                $this->deleteImage($student->image);
-                $input['image']=$this->uploadImage($img,'students');
+
+            if($oldImage && isset($input['image']))
+            {
+                $this->deleteImage($oldImage);
+               
             }
 
             $student->update($input);

@@ -28,6 +28,9 @@ Route::group([
     Route::post('/logout', [TeacherController::class, 'logout']);
     Route::post('/refresh', [TeacherController::class, 'refresh']);
     Route::get('/teacher-profile', [TeacherController::class, 'userProfile']);  
+     Route::post('/upload-file', [TeacherController::class, 'uploadFile']);  
+     Route::get('/teacher-files', [TeacherController::class, 'teacherFiles']);  
+
      
 });
 
@@ -43,7 +46,8 @@ Route::group([
     Route::post('/refresh', [StudentController::class, 'refresh']);
     Route::get('/student-profile', [StudentController::class, 'userProfile']);  
     Route::get('/student-classroom', [StudentController::class, 'userclassroom']);  
-    
+    Route::get('libraries/download-pdf/{id}',[StudentController::class,'downloadPDF'] )->name('download-pdf');
+
 });
 
 

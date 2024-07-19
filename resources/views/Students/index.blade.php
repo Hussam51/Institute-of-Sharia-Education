@@ -21,8 +21,18 @@
                     <div class="col-xl-12 mb-30">
                         <div class="card card-statistics h-100">
                             <div class="card-body">
-                                <a href="{{route('dashboard.students.create')}}" class="btn btn-success btn-sm" role="button"
+                                <a href="{{route('dashboard.students.create')}}" class="btn btn-success  ti-plus" role="button"
                                    aria-pressed="true">اضافة طالب</a><br><br>
+                                   <form action="{{ URL::current() }}" method="GET" class="d-flex" >
+                                    <input type="text" name="first_name" placeholder="first_Name" value="{{request('first_name')}}" />
+                                    <input type="text" id="last_name" name="last_name" class="mx-2" placeholder="Last_Name" value="{{request('last_name')}}">
+                                    <input type="text" id="father_name" name="father_name" class="mx-2" placeholder="father_Name" value="{{request('father_name')}}">
+                                    <button type="submit" class="btn btn-dark">Search</button>
+                                </form>
+                                   <br>
+                                   @foreach ($classrooms as $classroom)
+                                       
+                                   <h5 >  الصف: {{$classroom->name}}</h5>
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                            data-page-length="50"
@@ -47,6 +57,8 @@
                                                 $i=0;
                                             @endphp
                                         @foreach($students as $student)
+                                        @if($student->classroom->id==$classroom->id)
+
                                         <?php $i++; ?>
                                             <tr>
                                             <td>{{ $i }}</td>
@@ -60,8 +72,9 @@
                                             <td>{{$student->created_at}}</td>
                                                 <td>
                                                     <a href="{{route('dashboard.students.edit',$student->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_student{{ $student->id }}" title="حذف طالب "><i class="fa fa-trash"></i></button>
-                                                    <a href="#" class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fa fa-eye"></i></a>
+                                                    <a href="{{route('dashboard.students.show',$student->id)}}" class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fa fa-eye"></i></a>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_student{{ $student->id }}" title="حذف طالب " role="button" aria-pressed="true"><i class="fa fa-trash"></i></button>
+
                                                 </td>
                                             </tr>
                                            <!-- delete_modal_Grade -->
@@ -96,9 +109,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                                         @endforeach
                                     </table>
                                 </div>
+                                <b style="color: red">                             عدد الطلاب   {{$classroom->students->count()}}
+                                </b>
+                                <br><br>
+                                @endforeach
                             </div>
                         </div>
                     </div>

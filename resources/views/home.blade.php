@@ -39,7 +39,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h4 class="mb-0"> Dashboard</h4>
+                        <h4 class="mb-0"> لوحة التحكم</h4>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right">
@@ -59,7 +59,7 @@
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <p class="card-text text-dark">Students</p>
+                                    <p class="card-text text-dark">الطلاب</p>
                                     <h4>{{$statistics['students']}}</h4>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <p class="card-text text-dark">Teachers</p>
+                                    <p class="card-text text-dark">المعلمين</p>
                                     <h4>{{$statistics['teachers']}}</h4>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <p class="card-text text-dark">Classrooms</p>
+                                    <p class="card-text text-dark">الصفوف الدراسية</p>
                                     <h4>{{$statistics['classrooms']}}</h4>
                                 </div>
                             </div>
@@ -120,12 +120,111 @@
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <p class="card-text text-dark">Subjects</p>
+                                    <p class="card-text text-dark">المواد الدراسية</p>
                                     <h4>{{$statistics['subjects']}}</h4>
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
                                 <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i><a  style="color: royalblue" href=" {{route('dashboard.subjects.index')}}" >عرض المواد الدراسية</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-5 col-md-6 mb-30">
+                    <div class="card card-statistics h-100">
+                        <div class="card-body">
+                            <div class="clearfix">
+                                <div class="float-left">
+                                    <span class="text-primary">
+                                        <i  class="highlight-icon"><svg xmlns="http://www.w3.org/2000/svg" width="35"
+                                            height="35" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                                            <path
+                                                d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783" />
+                                        </svg></i>
+                                    </span>
+                                </div>
+                                <div class="float-right text-right">
+                                    <p class="card-text text-dark"> الكتب والملفات</p>
+                                    <h4>{{$statistics['files']}}</h4>
+                                </div>
+                            </div>
+                            <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i><a  style="color: royalblue" href=" {{route('dashboard.libraries.index')}}" >عرض الكتب والملفات </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-5 col-md-6 mb-30">
+                    <div class="card card-statistics h-100">
+                        <div class="card-body">
+                            <div class="clearfix">
+                                <div class="float-left">
+                                    <span class="text-primary">
+                                        <i >
+                                            <svg height="16px" width="16px" version="1.1" id="_x32_"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 512 512" xml:space="preserve" fill="#000000">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                </g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <style type="text/css">
+                                        .st0 {
+                                            fill: #ffffff;
+                                        }
+                                    </style>
+                                    <g>
+                                        <path class="st0"
+                                            d="M165.865,85.55c23.636,0,42.779-19.159,42.779-42.77C208.644,19.142,189.501,0,165.865,0 c-23.636,0-42.779,19.142-42.779,42.779C123.086,66.391,142.229,85.55,165.865,85.55z">
+                                        </path>
+                                        <path class="st0"
+                                            d="M222.061,97.624H109.669c-20.726,0-43.274,22.548-43.274,43.282v143.768c0,10.363,8.396,18.767,18.758,18.767 c10.363,0,18.775-8.404,18.775-18.767V166.469h8.651v320.88c0,13.616,11.035,24.651,24.644,24.651 c13.625,0,24.66-11.035,24.66-24.651V301.138h7.964v186.211c0,13.616,11.035,24.651,24.66,24.651 c13.609,0,24.644-11.035,24.644-24.651v-320.88h8.668v118.204c0,10.363,8.396,18.767,18.758,18.767 c10.379,0,18.759-8.404,18.759-18.767V140.906C265.335,120.172,242.787,97.624,222.061,97.624z">
+                                        </path>
+                                        <path class="st0"
+                                            d="M373.041,256.72c19.206,0,34.758-15.568,34.758-34.751c0-19.206-15.552-34.759-34.758-34.759 c-19.206,0-34.758,15.552-34.758,34.759C338.283,241.152,353.835,256.72,373.041,256.72z">
+                                        </path>
+                                        <path class="st0"
+                                            d="M412.989,278.117h-84.718c-15.616,0-32.616,16.992-32.616,32.624v75.482c0,7.812,6.333,14.145,14.137,14.145 c7.812,0,14.153-6.333,14.153-14.145v-56.212h6.525v163.407c0,10.267,8.316,18.582,18.566,18.582 c10.275,0,18.592-8.316,18.592-18.582v-94.785h6.005v94.785c0,10.267,8.316,18.582,18.582,18.582 c10.259,0,18.582-8.316,18.582-18.582V330.011h6.525v56.212c0,7.812,6.332,14.145,14.137,14.145 c7.828,0,14.144-6.333,14.144-14.145v-75.482C445.605,295.108,428.614,278.117,412.989,278.117z">
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg>
+                                        </i>
+                                    </span>
+                                </div>
+                                <div class="float-right text-right">
+                                    <p class="card-text text-dark">اولياء الامور</p>
+                                    <h4>{{$statistics['parents']}}</h4>
+                                </div>
+                            </div>
+                            <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i><a  style="color: royalblue" href=" {{route('dashboard.parents.index')}}" >  عرض أولياء الأمور</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-2 col-lg-5 col-md-6 mb-30">
+                    <div class="card card-statistics h-100">
+                        <div class="card-body">
+                            <div class="clearfix">
+                                <div class="float-left">
+                                    <span class="text-primary">
+                                        <i  aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="35"
+                                            height="35" fill="currentColor" class="bi bi-chat-quote-fill"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M16 8c0 3.866-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7M7.194 6.766a1.7 1.7 0 0 0-.227-.272 1.5 1.5 0 0 0-.469-.324l-.008-.004A1.8 1.8 0 0 0 5.734 6C4.776 6 4 6.746 4 7.667c0 .92.776 1.666 1.734 1.666.343 0 .662-.095.931-.26-.137.389-.39.804-.81 1.22a.405.405 0 0 0 .011.59c.173.16.447.155.614-.01 1.334-1.329 1.37-2.758.941-3.706a2.5 2.5 0 0 0-.227-.4zM11 9.073c-.136.389-.39.804-.81 1.22a.405.405 0 0 0 .012.59c.172.16.446.155.613-.01 1.334-1.329 1.37-2.758.942-3.706a2.5 2.5 0 0 0-.228-.4 1.7 1.7 0 0 0-.227-.273 1.5 1.5 0 0 0-.469-.324l-.008-.004A1.8 1.8 0 0 0 10.07 6c-.957 0-1.734.746-1.734 1.667 0 .92.777 1.666 1.734 1.666.343 0 .662-.095.931-.26z" />
+                                        </svg></i>
+                                    </span>
+                                </div>
+                                <div class="float-right text-right">
+                                    <p class="card-text text-dark">المرشدين</p>
+                                    <h4>{{$statistics['advisers']}}</h4>
+                                </div>
+                            </div>
+                            <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i><a  style="color: royalblue" href=" {{route('dashboard.advisers.index')}}" >عرض  المرشدين</a>
                             </p>
                         </div>
                     </div>

@@ -10,6 +10,7 @@ use App\Models\Subject;
 use App\Repositories\Subject\SubjectRepository;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubjectController extends Controller
 {
@@ -19,7 +20,8 @@ class SubjectController extends Controller
     public function index()
     {
         $subjects=Subject::all();
-        $classrooms=Classroom::all();
+        $department_id=Auth::user()->department_id;
+        $classrooms=Classroom::where('department_id',$department_id)->get();
       return view('Subjects.subject',compact('subjects','classrooms'));
     }
 
@@ -80,8 +82,10 @@ class SubjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Subject $subject)
     {
-        //
+       $subject->delete();
+       toastr('deleted successfully','warning','Deleted');
+       return redirect()->route('dashboard.subjects.index');
     }
 }

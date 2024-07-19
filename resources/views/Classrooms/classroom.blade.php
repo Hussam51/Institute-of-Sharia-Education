@@ -47,7 +47,6 @@
                                    {{-- <th>حذف الصفوف المحددة</th>--}}
                                     <th>#</th>
                                     <th>إسم الصف</th>
-                                    <th>القسم</th>
                                     <th>العمليات</th>
                                 </tr>
                             </thead>
@@ -69,7 +68,7 @@
                                         </td> --}}
                                         <td>{{ $i }}</td>
                                         <td>{{ $classroom->name }}</td>
-                                        <td>{{ $classroom->department->name }}</td>
+                                       
                                         <td>
                                             <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                                 data-target="#edit{{ $classroom->id }}" title="تعديل صف"><i
@@ -118,6 +117,7 @@
                                                             </div>
 
                                                         </div><br>
+                                                     {{--
                                                         <div class="form-group">
                                                             <label for="exampleFormControlTextarea1">القسم
                                                                 :</label>
@@ -134,6 +134,7 @@
                                                             </select>
 
                                                         </div>
+                                                     --}}
                                                         <br><br>
 
                                                         <div class="modal-footer">
@@ -230,7 +231,7 @@
                                                 <input class="form-control" type="text" name="name" />
                                             </div>
 
-                                            <div class="col">
+                                      {{--  <div class="col">
                                                 <label for="Name_en" class="mr-sm-2">القسم
                                                     :</label>
 
@@ -245,7 +246,7 @@
                                                 </div>
 
                                             </div>
-
+                                                --}}
                                             <div class="col">
                                                 <label for="Name_en" class="mr-sm-2">العمليات
                                                     :</label>

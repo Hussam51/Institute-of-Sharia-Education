@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Adviser;
 use App\Models\Classroom;
+use App\Models\Library;
+use App\Models\Parents;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -27,10 +31,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $statistics['students']=Student::count();
-        $statistics['teachers']=Teacher::count();
-        $statistics['classrooms']=Classroom::count();
+        $department_id=Auth::user()->department_id;
+        $statistics['students']=Student::where('department_id',$department_id)->count();
+        $statistics['teachers']=Teacher::where('department_id',$department_id)->count();
+        $statistics['classrooms']=Classroom::where('department_id',$department_id)->count();
         $statistics['subjects']=Subject::count();
+        $statistics['parents']=Parents::count();
+        $statistics['advisers']=Adviser::where('department_id',$department_id)->count();
+        $statistics['files']=Library::count();
         return view('home',compact('statistics'));
     }
 }

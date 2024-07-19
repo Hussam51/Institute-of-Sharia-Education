@@ -15,12 +15,12 @@ class DepartmentsTableSeeder extends Seeder
     public function run(): void
     {
       Department::create([
-        'admin_id'=>1,
+       
         'name'=>'male',
 
       ]);
       Department::create([
-        'admin_id'=>2,
+       
         'name'=>'female',
 
       ]);

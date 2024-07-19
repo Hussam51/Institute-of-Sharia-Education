@@ -34,14 +34,16 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th> First name </th>
-                                            <th> Last name</th>
-                                            <th> Birth data</th>
-                                            <th>Phone</th>
-                                            <th>Email</th>
+                                            <th> الاسم الاول  </th>
+                                            <th> الاسم الاخير </th>
+                                            <th> تاريخ الميلاد </th>
+                                            <th>الهاتف</th>
+                                            <th>الايميل</th>
                                           
-                                          
-                                            <th> creating data</th>
+                                            <th>  الحضور </th>
+                                            <th> اجمالي الغياب </th>
+                                            <th>  الغياب المبرر </th>
+                                            <th>  الغياب الغير المبرر </th>
                                            
 
                                         </tr>
@@ -59,9 +61,12 @@
                                             <td class="mr-3">{{$student->data_birth}}</td>
                                             <td class="mr-3">{{$student->phone}}</td>
                                             <td class="mr-3">{{$student->email}}</td>
-                                           
-                                            <td class="mr-3">{{$student->created_at}}</td>
-                                               
+                                            <td class="mr-3">{{$student->attendances()->where('attendance_status',1)->count()}}</td>
+
+                                            <td class="mr-3">{{$student->attendances()->where('attendance_status',0)->count()}}</td>
+                                            <td class="mr-3">{{$student->attendances()->where('attendance_status',0)->whereNotNull('absent_reason')->count()}}</td>
+                                            <td class="mr-3">{{$student->attendances()->where('attendance_status',0)->whereNull('absent_reason')->count();}}</td>
+
                                             </tr>
                                            <!-- delete_modal_Grade -->
                               
