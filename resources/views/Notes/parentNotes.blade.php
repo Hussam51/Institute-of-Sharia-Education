@@ -6,9 +6,9 @@
 @stop
 @endsection
 @section('page-header')
-<h3 style="color: blue"> ملاحظات اولياء الأمور 
+<h5 style="color: blue"> ملاحظات اولياء الأمور 
   
-</h3>
+</h5>
 <!-- breadcrumb -->
 @section('PageTitle')
                           ملاحظات اولياء الأمور 

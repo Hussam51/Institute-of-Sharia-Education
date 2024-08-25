@@ -43,5 +43,43 @@ class Classroom extends Model
     {
         return $this->hasMany(Quiz::class, 'classroom_id','id');
     }
+
+    public function exam()
+    {
+
+        return $this->hasMany(Exam::class, 'classroom_id', 'id');
+    }
+
+    public function attendance()
+    {
+
+        return $this->hasMany(Attendance::class, 'classroom_id', 'id');
+    }
+
+    public function mentor()
+    {
+
+        return $this->hasOne(Monitor::class, 'classroom_id', 'id');
+    }
+
+
+
+    public function libraries()
+    {
+
+        return $this->hasMany(Library::class, 'classroom_id', 'id');
+    }
+
+    public function homeworks()
+    {
+
+        return $this->hasMany(Homework::class, 'classroom_id', 'id');
+    }
+
+
+    public function teacherWeekTable()
+    {
+        return $this->hasMany(TeacherWeekTimes::class);
+    }
     
 }

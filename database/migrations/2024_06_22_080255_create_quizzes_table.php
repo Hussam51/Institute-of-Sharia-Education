@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign('classroom_id')->references('id')->on('classrooms')->cascadeOnDelete();
             $table->float('min_mark')->default(0.0);
             $table->float('max_mark')->default(0.0);
-            $table->enum('type',['probe_1','quiz_1','midterm_exam','probe_2','quiz_2','final_exam','nonverbal','homework','activity','participation']);
+            $table->enum('type',['الشفهي','الوظائف','المشاركة','النشاط','المذاكرة','الامتحان']);
             $table->timestamps();
         });
     }

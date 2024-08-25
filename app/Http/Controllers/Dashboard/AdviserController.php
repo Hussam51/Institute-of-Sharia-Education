@@ -36,15 +36,21 @@ class AdviserController extends Controller
     {
         try {
 
-
+            $validatedData = $request->validate([
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'password' => 'required|min:8',
+               
+            ]);
             $adviser = new Adviser();
-            $adviser->name = $request->name;
+            $adviser->first_name = $request->first_name;
+            $adviser->last_name = $request->last_name;
 
             $adviser->phone = $request->phone;
 
 
             $adviser->department_id = Auth::user()->department_id;
-            $adviser->password = Hash::make($request->phone);
+            $adviser->password = Hash::make($request->password);
             if ($request->hasFile('photo')) {
 
                 $img = $request->file('photo');
@@ -83,7 +89,7 @@ class AdviserController extends Controller
         try {
             $input = $request->except('photo');
 
-            if ($request->phone) {
+            if ($request->password) {
                 $input['password'] = Hash::make($request->password);
             }
             if ( $request->hasFile('photo')) {

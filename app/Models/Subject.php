@@ -31,4 +31,24 @@ class Subject extends Model
     {
         return $this->hasMany(Quiz::class);
     }
+
+
+
+
+    public function duties()
+    {
+        return $this->hasMany(Homework::class);
+    }
+
+    public function exam()
+    {
+        return $this->hasMany(Exam::class);
+    }
+
+    public function teacherWeekTable()
+    {
+        return $this->hasMany(TeacherWeekTimes::class);
+    }
+
+
 }

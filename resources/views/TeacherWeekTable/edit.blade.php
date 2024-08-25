@@ -47,11 +47,11 @@
                                     <label for="day">اليوم  : <span class="text-danger">*</span></label>
                                     <select class="custom-select mr-sm-3" name="day">
                                         <option disabled >--اختراليوم</option>
-                                        <option value="sunday" @selected($teacherTime->day=='sunday') >الاحد</option>
-                                        <option value="monday" @selected($teacherTime->day=='monday')>الاثنين</option>
-                                        <option value="tuesday" @selected($teacherTime->day=='tuesday')>الثلاثاء</option>
-                                        <option value="wednesday" @selected($teacherTime->day=='wednesday')>الاربعاء</option>
-                                        <option value="thursday"@selected($teacherTime->day=='thursday') >الخميس</option>
+                                        <option value="الأحد" @selected($teacherTime->day=='الأحد') >الاحد</option>
+                                        <option value="الإثنين" @selected($teacherTime->day=='الإثنين')>الاثنين</option>
+                                        <option value="الثلاثاء" @selected($teacherTime->day=='الثلاثاء')>الثلاثاء</option>
+                                        <option value="الأربعاء" @selected($teacherTime->day=='الأربعاء')>الاربعاء</option>
+                                        <option value="الخميس"@selected($teacherTime->day=='الخميس') >الخميس</option>
                                     </select>
                                 </div>
                             </div>

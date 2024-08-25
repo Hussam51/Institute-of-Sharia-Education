@@ -35,17 +35,23 @@ class WeekController extends Controller
      */
     public function store(Request $request)
     {
+       
+       
         try {
 
             foreach ($request->list_classes as $list_class) {
-            
+               $list_class['department_id']=$request->department_id;
+
+               $list_class['classroom_id']=$request->classroom_id;
+
                $list= WeekTable::create($list_class);
               
             }
             toastr()->success('created successfully');
-            return redirect()->route('dashboard.week_tables.index');
-        } catch (Exception $e) {
-          //  return redirect()->back()->withErrors("Warning", $e->getMessage());
+           return redirect()->route('dashboard.week_tables.show',$request->classroom_id);
+        }
+         catch (Exception $e) {
+            return redirect()->back()->withErrors("Warning", $e->getMessage());
         }
     }
 
@@ -54,7 +60,7 @@ class WeekController extends Controller
      */
     public function show(string $id)
     {
-        $classroom=Classroom::find($id)->first();
+        $classroom=Classroom::find($id);
        $tables=WeekTable::where('classroom_id',$id)->get();
        $subjects=$classroom->subjects;
        return view('WeekTables.index',compact('tables','classroom','subjects'));
@@ -73,16 +79,16 @@ class WeekController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(WeekTable $weekTable)
+    public function destroy(WeekTable $weekTable ,Request $request)
     {
         $weekTable->delete();
         toastr()->warning('Deleted Successfully');
-        return redirect()->route('dashboard.week_tables.index');
+        return redirect()->route('dashboard.week_tables.show',$request->classroom_id);
     }
 }

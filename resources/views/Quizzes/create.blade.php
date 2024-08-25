@@ -24,7 +24,7 @@
                 <div class="col-md-6">
                     <label for="classroom_id">الصف <span class="text-danger">*</span></label>
                     <select name="classroom_id" id="classroom_id" class="custom-select mr-sm-2">
-                        <option disabled>اختر صف--</option>
+                        <option disabled selected>اختر صف--</option>
                         @foreach($classrooms as $classroom)
                             <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
                         @endforeach
@@ -49,12 +49,12 @@
                 <label for="type">نوع الإختبار <span class="text-danger">*</span></label>
                 <select name="type" id="type" class="custom-select mr-sm-2">
                   
-                        <option value="probe_1">السبر الاول </option>
-                        <option value="quiz_1"> الاختبار الاول </option>
-                        <option value="midterm_exam"> إمتحان الفصل الاول </option>
-                        <option value="probe_2">السبر الثاني </option>
-                        <option value="quiz_2"> الاختبار الثاني </option>
-                        <option value="final_exam">الإمتحان النهائي </option>
+                        <option value="النشاط"> النشاط </option>
+                        <option value="المشاركة">  المشاركة </option>
+                        <option value="الوظائف">   الوظائف </option>
+                        <option value="الشفهي"> الشفهي </option>
+                        <option value="المذاكرة">  المذاكرة </option>
+                        <option value="الامتحان">الإمتحان  </option>
 
                         
                 </select>

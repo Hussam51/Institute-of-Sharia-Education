@@ -64,6 +64,15 @@ return [
             'driver' => 'jwt',
             'provider' => 'parents',
         ],
+
+        'monitor' => [
+            'driver' => 'jwt',
+            'provider' => 'monitors',
+        ],
+        'adviser' => [
+            'driver' => 'jwt',
+            'provider' => 'advisers',
+        ],
     ],
 
     /*
@@ -101,7 +110,14 @@ return [
             'model' => App\Models\Parents::class,
         ],
        
-
+        'monitors' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Monitor::class,
+        ],
+        'advisers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Adviser::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

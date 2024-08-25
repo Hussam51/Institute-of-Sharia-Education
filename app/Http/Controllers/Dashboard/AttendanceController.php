@@ -40,10 +40,15 @@ class AttendanceController extends Controller
 
 
                 if ($attendance == 'presence') {
-                    $attendance_status = true;
+                    $attendance_status = 'حاضر';
+                    
                 } else if ($attendance == 'absent') {
 
-                    $attendance_status = false;
+                    $attendance_status = 'غياب';
+                }
+                else if ($attendance == 'late') {
+
+                    $attendance_status = 'تأخر';
                 }
 
                 $validatedData =[

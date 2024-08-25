@@ -63,9 +63,10 @@
                                         <td>{{ $table->subject->name }}</td>
 
                                         <td>
-                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                           {{-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                                 data-target="#edit{{ $table->id }}" title="تعديل صف"><i
                                                     class="fa fa-edit"></i></button>
+                                                    --}}
                                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                 data-target="#delete{{ $table->id }}" title="حذف صف"><i
                                                     class="fa fa-trash"></i></button>
@@ -106,11 +107,11 @@
                                                             <label for="day" class="mr-sm-2"> اليوم
                                                                 :</label>
                                                           <select name="day" class="form-control" id="day">
-                                                            <option value="sunday" @selected($table->day=='sunday') >الاحد</option>
-                                                            <option value="monday" @selected($table->day=='monday') >الاثنين</option>
-                                                            <option value="tuesday" @selected($table->day=='tuesday')>الثلاثاء</option>
-                                                            <option value="wednesday" @selected($table->day=='wednesday')>الاربعاء</option>
-                                                            <option value="thursday" @selected($table->day=='thursday')>الخميس</option>
+                                                            <option value="أحد" @selected($table->day=='أحد') >الاحد</option>
+                                                            <option value="اثنين" @selected($table->day=='اثنين') >الاثنين</option>
+                                                            <option value="ثلاثاء" @selected($table->day=='ثلاثاء')>الثلاثاء</option>
+                                                            <option value="أربعاء" @selected($table->day=='أربعاء')>الاربعاء</option>
+                                                            <option value="خميس" @selected($table->day=='خميس')>الخميس</option>
                                                           </select>
                                                             
                                                         </div>
@@ -135,7 +136,7 @@
                                                             <label for="session" c  lass="mr-sm-2"> الحصة
                                                                 :</label>
             
-                                                                <select name="session" class="form-control" id="session">
+                                                                <select name="الحصة" class="form-control" id="session">
                                                                     <option value="1" @selected($table->session==1) >الاولى </option>
                                                                     <option value="2" @selected($table->session==2)>الثانية</option>
                                                                     <option value="3" @selected($table->session==3)>الثالثة</option>
@@ -149,11 +150,11 @@
                                                        
                                                             <input type="hidden" name="term" value="1">
                                                         
-                                                        <input type="hidden" name="classroom_id" value="{{$classroom->id}}" />
-                                                        <input type="hidden" name="department_id" value="{{$classroom->department_id}}" />
-                                                    </div>
+                                                       </div>
                                                     <br><br>
-
+                                                    <input type="hidden" name="classroom_id" value="{{$classroom->id}}" />
+                                                    <input type="hidden" name="department_id" value="{{$classroom->department_id}}" />
+                                                
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">إغلاق</button>
@@ -189,7 +190,12 @@
                                                     @csrf
 
                                                     <input id="id" type="hidden" name="id"
+                                                    
                                                         class="form-control" value="{{ $table->id }}">
+
+                                                        <input type="hidden" name="classroom_id" value="{{$classroom->id}}" />
+                                                    <input type="hidden" name="department_id" value="{{$classroom->department_id}}" />
+                                                
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">الغاء</button>
@@ -234,9 +240,10 @@
                                         <td>{{ $table->subject->name }}</td>
 
                                         <td>
-                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                          {{--  <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                                 data-target="#edit{{ $table->id }}" title="تعديل صف"><i
                                                     class="fa fa-edit"></i></button>
+                                                    --}}
                                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                 data-target="#delete{{ $table->id }}" title="حذف صف"><i
                                                     class="fa fa-trash"></i></button>
@@ -279,11 +286,11 @@
                                                             <label for="day" class="mr-sm-2"> اليوم
                                                                 :</label>
                                                           <select name="day" class="form-control" id="day">
-                                                            <option value="sunday" @selected($table->day=='sunday') >الاحد</option>
-                                                            <option value="monday" @selected($table->day=='monday') >الاثنين</option>
-                                                            <option value="tuesday" @selected($table->day=='tuesday')>الثلاثاء</option>
-                                                            <option value="wednesday" @selected($table->day=='wednesday')>الاربعاء</option>
-                                                            <option value="thursday" @selected($table->day=='thursday')>الخميس</option>
+                                                            <option value="أحد" @selected($table->day=='أحد') >الاحد</option>
+                                                            <option value="اثنين" @selected($table->day=='أربعاء') >الاثنين</option>
+                                                            <option value="ثلاثاء" @selected($table->day=='أربعاء')>الثلاثاء</option>
+                                                            <option value="أربعاء" @selected($table->day=='أربعاء')>الاربعاء</option>
+                                                            <option value="خميس" @selected($table->day=='خميس')>الخميس</option>
                                                           </select>
                                                             
                                                         </div>
@@ -354,13 +361,17 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ route('dashboard.exam_tables.destroy', $table->id) }}"
+                                                <form action="{{ route('dashboard.week_tables.destroy', $table->id) }}"
                                                     method="post">
                                                     {{ method_field('Delete') }}
                                                     @csrf
 
                                                     <input id="id" type="hidden" name="id"
                                                         class="form-control" value="{{ $table->id }}">
+
+                                                        <input type="hidden" name="classroom_id" value="{{$classroom->id}}" />
+                                                        <input type="hidden" name="department_id" value="{{$classroom->department_id}}" />
+                                                    
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">الغاء</button>
@@ -390,7 +401,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
-                        إضافة صف جديد
+                        إضافة جدول للطلاب
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -403,6 +414,9 @@
                         <div class="card-body">
                             <div class="repeater">
                                 <div data-repeater-list="list_classes">
+                                    <input type="hidden" name="classroom_id" value="{{$classroom->id}}" />
+                                    <input type="hidden" name="department_id" value="{{$classroom->department_id}}" />
+                                
                                     <div data-repeater-item>
                                         <div class="row">
 
@@ -428,11 +442,11 @@
                                                 <label for="day" class="mr-sm-2"> اليوم
                                                     :</label>
                                               <select name="day" class="form-control" id="day">
-                                                <option value="sunday" >الاحد</option>
-                                                <option value="monday" >الاثنين</option>
-                                                <option value="tuesday" >الثلاثاء</option>
-                                                <option value="wednesday" >الاربعاء</option>
-                                                <option value="thursday" >الخميس</option>
+                                                <option value="أحد" >الاحد</option>
+                                                <option value="اثنين" >الاثنين</option>
+                                                <option value="ثلاثاء" >الثلاثاء</option>
+                                                <option value="أربعاء" >الاربعاء</option>
+                                                <option value="خميس" >الخميس</option>
                                               </select>
                                                 
                                             </div>
@@ -454,7 +468,7 @@
                                            
                                             
                                             <div class="col">
-                                                <label for="session" c  lass="mr-sm-2"> الحصة
+                                                <label for="session" class="mr-sm-2"> الحصة
                                                     :</label>
 
                                                     <select name="session" class="form-control" id="session">
@@ -474,9 +488,7 @@
                                                 <input class="btn btn-danger btn-block" data-repeater-delete
                                                     type="button" value="حذف الحقل" />
                                             </div>
-                                            <input type="hidden" name="classroom_id" value="{{$classroom->id}}" />
-                                            <input type="hidden" name="department_id" value="{{$classroom->department_id}}" />
-                                        </div>
+                                           </div>
                                     </div>
                                 </div>
                                 <div class="row mt-20">
@@ -496,6 +508,10 @@
 
                             </div>
                         </div>
+
+                        <input type="hidden" name="classroom_id" value="{{$classroom->id}}" />
+                        <input type="hidden" name="department_id" value="{{$classroom->department_id}}" />
+                    
                     </form>
                 </div>
 

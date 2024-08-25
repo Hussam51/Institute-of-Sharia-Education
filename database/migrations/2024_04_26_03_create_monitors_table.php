@@ -15,8 +15,13 @@ return new class extends Migration
     {
         Schema::create('monitors', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('password')->unique();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('phone');
+            $table->foreignId("department_id")
+            ->constrained('departments','id')
+            ->cascadeOnDelete();
+            $table->string('password')->unique();
             $table->timestamps();
         });
     }

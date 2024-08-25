@@ -20,6 +20,8 @@ return new class extends Migration
             $table->bigInteger('adviser_id')->unsigned();
             $table->foreign('adviser_id')->references('id')->on('advisers')->cascadeOnDelete();
             $table->longText('consult');
+            $table->string('answered')->default(false);
+            $table->boolean('is_anonymous');
             $table->timestamps();
         });
     }

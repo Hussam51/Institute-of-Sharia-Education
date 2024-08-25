@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('parent_id')->references('id')->on('parents');
             $table->unsignedBigInteger('transport_id');
             $table->foreign('transport_id')->references('id')->on('transports');
-            $table->enum('status',['late','absent']);
+            $table->enum('status',['تأخر','غياب','حاضر','إذن']);
             $table->string('note')->nullable();
             $table->dateTime('date');
             $table->timestamps();

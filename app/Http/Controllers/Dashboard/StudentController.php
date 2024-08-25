@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\Department;
+use App\Models\Rating;
 use App\Models\Student;
 use App\Traits\ImageTrait;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
@@ -42,8 +44,19 @@ class StudentController extends Controller
     public function store(Request $request)
     {
 
+
         try {
 
+            $validatedData = $request->validate([
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'password' => 'required|min:8',
+               'data_birth'=> 'required',
+               
+
+            ]);
+
+            DB::beginTransaction();
 
             $student = new Student();
             $student->first_name = $request->first_name;
@@ -56,13 +69,25 @@ class StudentController extends Controller
             $student->password = Hash::make($request->password);
             if ($request->hasFile('image')) {
 
-                  $img=$request->file('image');
-                $student->image = $this->UploadImage($img,'students');
+                $img = $request->file('image');
+                $student->image = $this->UploadImage($img, 'students');
             }
             $student->save();
+
+            // add points for each a new student  in the system
+            Rating::create([
+                'student_id' => $student->id,
+                'comment' => 'point',
+                'score' => 0
+            ]);
+
             toastr('student created successfully');
+
+            DB::commit();
+
             return redirect()->route('dashboard.students.index');
         } catch (Exception $e) {
+            DB::rollback();
             toastr($e->getMessage(), 'warning', 'there is an error');
             return redirect()->route('dashboard.students.index');
         }
@@ -73,8 +98,8 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-         $student=Student::findOrFail($id)->first();
-      return view('Students.show',compact('student'));
+        $student = Student::findOrFail($id)->first();
+        return view('Students.show', compact('student'));
     }
 
     public function departmentClassrooms(string $id)
@@ -99,27 +124,22 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $student=Student::findOrFail($id);
-       
-        $oldImage=$student->image;
-        $input=$request->except('image');
+        $student = Student::findOrFail($id);
+
+        $oldImage = $student->image;
+        $input = $request->except('image');
 
         try {
-           
-         
+
+
             if ($request->hasFile('image')) {
-                $img=$request->file('image');
-                
-                $input['image']=$this->uploadImage( $img,'students');
-               
-              
-              
+                $img = $request->file('image');
+
+                $input['image'] = $this->uploadImage($img, 'students');
             }
 
-            if($oldImage && isset($input['image']))
-            {
+            if ($oldImage && isset($input['image'])) {
                 $this->deleteImage($oldImage);
-               
             }
 
             $student->update($input);

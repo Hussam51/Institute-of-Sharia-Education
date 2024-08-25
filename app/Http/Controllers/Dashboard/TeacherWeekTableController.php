@@ -7,7 +7,7 @@ use App\Models\Classroom;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\TeacherMonitoringTable;
-use App\Models\TeacherWeekTable;
+use App\Models\TeacherWeekTimes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +19,7 @@ class TeacherWeekTableController extends Controller
     public function index()
     {
         $classrooms=Classroom::where('department_id',Auth::user()->department_id)->get();
-        $teachersTimes=TeacherWeekTable::all();
+        $teachersTimes=TeacherWeekTimes::all();
         return view('TeacherWeekTable.index',compact('teachersTimes','classrooms'));
 
     }
@@ -51,7 +51,7 @@ class TeacherWeekTableController extends Controller
        
        // $teacher=Teacher::findOrFail($request->teacher_id);
       //  $validatedData['subject_id']=$teacher->subject_id;
-        TeacherWeekTable::create($validatedData);
+      TeacherWeekTimes::create($validatedData);
         Toastr(' Time Table  added successfully','success','Time Table  ');
         return redirect()->route('dashboard.teacher_weekTable.index');
     }
@@ -71,7 +71,7 @@ class TeacherWeekTableController extends Controller
     {
         $classrooms=Classroom::where('department_id',Auth::user()->department_id)->get();
        
-        $teacherTime=TeacherWeekTable::findOrFail($id);
+        $teacherTime=TeacherWeekTimes::findOrFail($id);
         return view('TeacherWeekTable.edit',compact('teacherTime','classrooms'));
     }
 
@@ -80,7 +80,7 @@ class TeacherWeekTableController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $homework=TeacherWeekTable::findOrFail($id);
+        $homework=TeacherWeekTimes::findOrFail($id);
         $validatedData = $request->validate([
 
             'day'=>'required',
@@ -106,7 +106,7 @@ class TeacherWeekTableController extends Controller
      */
     public function destroy(string $id)
     {
-        $homework =TeacherWeekTable::findOrFail($id)
+        $homework =TeacherWeekTimes::findOrFail($id)
         ->delete();
 
         Toastr('Time Table deleted successfully!','warning');

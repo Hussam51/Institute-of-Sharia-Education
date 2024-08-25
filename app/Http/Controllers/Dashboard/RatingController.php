@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Classroom;
+use App\Models\Rating;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class RatingController extends Controller
@@ -28,7 +31,6 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -36,7 +38,9 @@ class RatingController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $classroom = Classroom::find($id)->first();
+        $students = Student::where('classroom_id', $classroom->id)->get();
+        return view('Ratings.ratings', compact('students','classroom'));
     }
 
     /**
@@ -52,7 +56,10 @@ class RatingController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+       
+        $rating = Rating::where('id',$id);
+        
+        $rating->update(['score'=> $request->score]);
     }
 
     /**

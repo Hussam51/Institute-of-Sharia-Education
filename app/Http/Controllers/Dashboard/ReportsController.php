@@ -35,8 +35,10 @@ class ReportsController extends Controller
     
         $pdf = Pdf::loadView('reports.students', [
             'class_students' => $class_students
-        ])->setOptions(['defaultFont' => 'sans-serif']);
+        ])->setOptions(['defaultFont' => 'Amiri,sans-serif']);
 
+
+        
         return $pdf->download('class_students.pdf');
     }
     

@@ -8,28 +8,26 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('student_homeworks', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('teacher_id')->unsigned();
+            $table->foreign('teacher_id')->references('id')->on('teachers')->cascadeOnDelete();
             $table->bigInteger('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('students')->cascadeOnDelete();
-            $table->bigInteger('homework_id')->unsigned();
-            $table->foreign('homework_id')->references('id')->on('homeworks')->cascadeOnDelete();
+            $table->string('question');
+            $table->string('answered')->default(false);
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('student_homeworks_tables');
+        Schema::dropIfExists('questions');
     }
 };

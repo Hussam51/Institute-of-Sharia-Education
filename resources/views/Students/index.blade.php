@@ -23,12 +23,16 @@
                             <div class="card-body">
                                 <a href="{{route('dashboard.students.create')}}" class="btn btn-success  ti-plus" role="button"
                                    aria-pressed="true">اضافة طالب</a><br><br>
-                                   <form action="{{ URL::current() }}" method="GET" class="d-flex" >
+                                 
+                                       
+                                 
+                                 <form action="{{ URL::current() }}" method="GET" class="d-flex" >
                                     <input type="text" name="first_name" placeholder="first_Name" value="{{request('first_name')}}" />
                                     <input type="text" id="last_name" name="last_name" class="mx-2" placeholder="Last_Name" value="{{request('last_name')}}">
                                     <input type="text" id="father_name" name="father_name" class="mx-2" placeholder="father_Name" value="{{request('father_name')}}">
                                     <button type="submit" class="btn btn-dark">Search</button>
                                 </form>
+                               
                                    <br>
                                    @foreach ($classrooms as $classroom)
                                        

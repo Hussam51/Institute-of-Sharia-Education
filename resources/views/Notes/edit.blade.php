@@ -77,8 +77,12 @@
                                 <label for="type"> حالة الطالب  : <span class="text-danger">*</span></label>
                                 <select class="custom-select mr-sm-3" name="status">
                                     
-                                    <option value="absent" style="background-color: rgb(230, 13, 13)" @selected($studentTrans->status=='absent')>غياب</option>
-                                    <option value="late" style="background-color: rgb(32, 91, 219)" @selected($studentTrans->status=='late')>تأخر</option>
+                                    <option value="غياب" style="background-color: rgb(230, 13, 13)" @selected($studentTrans->status=='غياب')>غياب</option>
+                                    <option value="حاضر" style="background-color: rgb(67, 170, 42)" @selected($studentTrans->status=='حاضر')>حاضر</option>
+                                    <option value="تأخر" style="background-color: rgb(65, 170, 91)" @selected($studentTrans->status=='تأخر')>تأخر</option>
+                                    <option value="إذن" style="background-color: rgb(32, 91, 219)" @selected($studentTrans->status=='إذن')>إذن</option>
+                             
+                               
                                 </select>
                             </div>
                         </div>

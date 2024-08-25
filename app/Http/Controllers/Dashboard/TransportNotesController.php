@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Bus;
 use App\Models\Classroom;
 use App\Models\Student;
 use App\Models\StudentTransport;
+use App\Models\Transport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class BusNotesController extends Controller
+class TransportNotesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class BusNotesController extends Controller
      */
     public function create()
     {
-        $transports=Bus::all();
+        $transports=Transport::all();
         $classrooms=Classroom::where('department_id',Auth::user()->department_id)
         ->get();
         return view('Notes.create',compact('transports','classrooms'));
@@ -42,7 +42,7 @@ class BusNotesController extends Controller
            
             'note' => 'required|string',
             'student_id' => 'required',
-            'status' => 'required|in:late,absent',
+            'status' => 'required',
             'transport_id'=>'required',
             'date'=>'required'
         ]);
@@ -70,7 +70,7 @@ class BusNotesController extends Controller
         $classrooms=Classroom::where('department_id',Auth::user()->department_id)
                ->get();
         $studentTrans=StudentTransport::findOrFail($id)->first();
-        $transports =Bus::all();
+        $transports =Transport::all();
         return view('Notes.edit',compact('studentTrans','classrooms','transports'));
     }
 
@@ -84,7 +84,7 @@ class BusNotesController extends Controller
 
            
             'note' => 'required|string',
-            'status' => 'required|in:late,absent',
+            'status' => 'required',
             'transport_id'=>'required',
             'date'=>'required'
 

@@ -7,6 +7,9 @@
 @endsection
 @section('page-header')
 <!-- breadcrumb -->
+<h4 style="color: blue">     الصفوف الدراسية
+ 
+</h4>
 @section('PageTitle')
     الصفوف الدراسية
 @stop

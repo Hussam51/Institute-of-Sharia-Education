@@ -57,7 +57,7 @@ class MarkController extends Controller
     public function show(string $id)
     {
      
-        $classroom=Classroom::find($id)->first();
+        $classroom=Classroom::find($id);
         $quizzes=Quiz::get();// يجب معالجتها
         $students=$classroom->students;
       

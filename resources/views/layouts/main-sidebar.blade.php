@@ -130,8 +130,10 @@
                         <ul id="teachers" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{ route('dashboard.teachers.index') }}">قائمة المعلمين </a> </li>
                             <li> <a href="{{ route('dashboard.teacher_weekTable.index') }}"> جدول دوام المعلمين </a> </li>
-                            <li> <a href="{{ route('dashboard.teacher_monitorings.index') }}">  مراقبة المعلمين </a> </li>
+                            <li> <a href="{{ route('dashboard.teacher_monitorings.index') }}"> جدول مراقبة المعلمين </a> </li>
 
+                            <li> <a href="{{ route('dashboard.teacher_attendences.index') }}">  ادارة حضور المعلمين </a> </li>
+                            <li> <a href="{{ route('dashboard.teacher_attendences.report') }}">  تقرير حضور المعلمين </a> </li>
 
                         </ul>
                     </li>
@@ -203,7 +205,7 @@
                                         d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0" />
                                     <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                                 </svg></i><span class="right-nav-text">
-                                إدارة الحضور </span></a> </li>
+                                إدارة حضور الطلاب </span></a> </li>
 
 
                     <!-- Results management -->
@@ -328,7 +330,7 @@
 
                     <!--Social guide management -->
 
-                    <li> <a href="{{ route('dashboard.advisers.index') }}" class="pull-left"> <i><svg
+                  {{--  <li> <a href="{{ route('dashboard.advisers.index') }}" class="pull-left"> <i><svg
                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-chat-quote-fill" viewBox="0 0 16 16">
                                     <path
@@ -336,6 +338,7 @@
                                 </svg></i><span class="right-nav-text">
                                 الإرشاد </span> </a>
                     </li>
+                    --}}
                   
 
                     <!--Exam Tables management -->
@@ -378,6 +381,19 @@
                         <ul id="beh" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{ route('dashboard.behaviors.index') }}"> سلوك الطلاب</a> </li>
                             <li> <a href="{{ route('dashboard.homeworks.index') }}"> واجبات الطلاب</a> </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#mon">
+                            <div class="pull-left"><i class="fa fa-group"> </i ></i><span class="right-nav-text">
+                                     الارشاد والتوجيه </span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="mon" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('dashboard.advisers.index') }}"> الارشاد </a> </li>
+                            <li> <a href="{{ route('dashboard.monitors.index') }}">  التوجيه</a> </li>
                         </ul>
                     </li>
 

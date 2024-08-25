@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->enum('term',['1','2']);
             $table->foreignId('subject_id')->constrained('subjects','id')->cascadeOnDelete();
-            $table->enum('day',['sunday','monday','tuesday','wednesday','thursday']);// sunday , monday ...thursday. اليوم: مثل
+            $table->enum('day',['أحد','اثنين','ثلاثاء','أربعاء','خميس']);// sunday , monday ...thursday. اليوم: مثل
             $table->enum('session',['1','2','3','4','5','6','7']); // الحصة
             $table->foreignId('department_id')->constrained()->cascadeOnDelete();
             $table->foreignId('classroom_id')->constrained()->cascadeOnDelete();

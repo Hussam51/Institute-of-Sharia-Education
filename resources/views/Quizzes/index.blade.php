@@ -6,7 +6,8 @@
 @stop
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
+    <!-- breadcrumb -->            <h4>الاختبارات والنشاط</h4>
+
 @section('PageTitle')
       قائمة الاختبارات
 @stop
@@ -16,7 +17,6 @@
     <!-- row -->
     <div class="row">
         <div class="container">
-            <h1>Quizzes</h1>
             <a href="{{ route('dashboard.quizzes.create') }}" class="btn btn-primary mb-3"> إضافة اختبار </a>
             <table class="table">
                 <thead>

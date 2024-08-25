@@ -47,18 +47,17 @@
                                 <label for="day">اليوم  : <span class="text-danger">*</span></label>
                                 <select class="custom-select mr-sm-3" name="day">
                                     <option disabled selected>--اختراليوم</option>
-                                    <option value="sunday" >الاحد</option>
-                                    <option value="monday" >الاثنين</option>
-                                    <option value="tuesday" >الثلاثاء</option>
-                                    <option value="wednesday" >الاربعاء</option>
-                                    <option value="thursday" >الخميس</option>
+                                    <option value="الأحد" >الأحد</option>
+                                    <option value="الإثنين" >الإثنين</option>
+                                    <option value="الثلاثاء" >الثلاثاء</option>
+                                    <option value="الأربعاء" >الأربعاء</option>
+                                    <option value="الخميس" >الخميس</option>
+
                                 </select>
                             </div>
                         </div>
 
-                        <div class="col-md-4">
-                            
-                        </div>
+                        
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="classroom_id"> الصف : <span class="text-danger">*</span></label>

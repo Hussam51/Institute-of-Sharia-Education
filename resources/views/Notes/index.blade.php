@@ -7,8 +7,8 @@
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
-    <h4 style="color: blue">   ملاحظات النقل  
-    </h4>
+    <h5 style="color: blue">   ملاحظات النقل  
+    </h5>
 @section('PageTitle')
    ملاحظات النقل  
 @stop

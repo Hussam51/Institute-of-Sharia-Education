@@ -8,26 +8,23 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-           $table->bigInteger('department_id')->unsigned();
-            $table->foreign('department_id')->references('id')->on('departments')->cascadeOnDelete();
-            $table->string('notification');
+            $table->string('teacherName');
+         //   $table->string('username');
+            $table->text('title');
+            $table->boolean('reader_status')->default(false);
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('notifications');
     }

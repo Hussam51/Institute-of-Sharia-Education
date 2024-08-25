@@ -31,4 +31,12 @@ class Quiz extends Model
     {
         return $this->hasMany(Mark::class, 'quiz_id', 'id');
     }
+
+    public function getFirstGroupQuizzes()
+    {
+        return $this->whereIn('type', [
+            'probe_1', 'quiz_1', 'midterm_exam',
+            'probe_2', 'quiz_2', 'final_exam'
+        ])->get();
+    }
 }

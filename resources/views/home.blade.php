@@ -35,6 +35,9 @@
         <!--=================================
  Main content -->
         <!-- main-content -->
+        <br>        <br>
+        <br>
+
         <div class="content-wrapper">
             <div class="page-title">
                 <div class="row">
@@ -225,6 +228,33 @@
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
                                 <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i><a  style="color: royalblue" href=" {{route('dashboard.advisers.index')}}" >عرض  المرشدين</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xl-2 col-lg-5 col-md-6 mb-30">
+                    <div class="card card-statistics h-100">
+                        <div class="card-body">
+                            <div class="clearfix">
+                                <div class="float-left">
+                                    <span class="text-primary">
+                                        <i  aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="35"
+                                            height="35" fill="currentColor" class="bi bi-chat-quote-fill"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M16 8c0 3.866-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7M7.194 6.766a1.7 1.7 0 0 0-.227-.272 1.5 1.5 0 0 0-.469-.324l-.008-.004A1.8 1.8 0 0 0 5.734 6C4.776 6 4 6.746 4 7.667c0 .92.776 1.666 1.734 1.666.343 0 .662-.095.931-.26-.137.389-.39.804-.81 1.22a.405.405 0 0 0 .011.59c.173.16.447.155.614-.01 1.334-1.329 1.37-2.758.941-3.706a2.5 2.5 0 0 0-.227-.4zM11 9.073c-.136.389-.39.804-.81 1.22a.405.405 0 0 0 .012.59c.172.16.446.155.613-.01 1.334-1.329 1.37-2.758.942-3.706a2.5 2.5 0 0 0-.228-.4 1.7 1.7 0 0 0-.227-.273 1.5 1.5 0 0 0-.469-.324l-.008-.004A1.8 1.8 0 0 0 10.07 6c-.957 0-1.734.746-1.734 1.667 0 .92.777 1.666 1.734 1.666.343 0 .662-.095.931-.26z" />
+                                        </svg></i>
+                                    </span>
+                                </div>
+                                <div class="float-right text-right">
+                                    <p class="card-text text-dark">الموجهين</p>
+                                    <h4>{{$statistics['monitors']}}</h4>
+                                </div>
+                            </div>
+                            <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i><a  style="color: royalblue" href=" {{route('dashboard.monitors.index')}}" >عرض  الموجهين</a>
                             </p>
                         </div>
                     </div>

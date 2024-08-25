@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign('teacher_id')->references('id')->on('teachers')->cascadeOnDelete();
             $table->foreignId('classroom_id')->constrained('classrooms')->cascadeOnDelete();
             $table->string('homework_name');
-            $table->enum('type',['homework','Review','lesson']);
+            $table->enum('type',['تسميع','درس مقرر','واجب']);
             $table->string('notes')->nullable();
             $table->dateTime('date');
             $table->timestamps();

@@ -51,15 +51,21 @@
             <div class="form-group">
                 <label for="type">نوع الإختبار</label>
                 <select name="type" id="type" class="custom-select mr-sm-2">
-                  
+                  {{--
                     <option value="probe_1" @selected($quiz->type=='probe_1')>السبر الاول </option>
                     <option value="quiz_1" @selected($quiz->type=='quiz_1')> الاختبار الاول </option>
                     <option value="midterm_exam" @selected($quiz->type=='midterm_exam')> إمتحان الفصل الاول </option>
                     <option value="probe_2" @selected($quiz->type=='probe_2')>السبر الثاني </option>
                     <option value="quiz_2" @selected($quiz->type=='quiz_2')> الاختبار الثاني </option>
                     <option value="final_exam" @selected($quiz->type=='final_exam')>الإمتحان النهائي </option>
+                   --}}
+                       <option value="النشاط" @selected($quiz->type=='النشاط')> النشاط </option>
+                        <option value="المشاركة" @selected($quiz->type=='المشاركة')>  المشاركة </option>
+                        <option value="الوظائف" @selected($quiz->type=='الوظائف')>   الوظائف </option>
+                        <option value="الشفهي" @selected($quiz->type=='الشفهي')> الشفهي </option>
+                        <option value="المذاكرة" @selected($quiz->type=='المذاكرة')>  المذاكرة </option>
+                        <option value="الامتحان" @selected($quiz->type=='الامتحان')>الإمتحان  </option>
 
-                    
             </select>
             </div>
             <button type="submit" class="btn btn-primary">تحديث </button>

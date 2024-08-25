@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TeacherWeekTable extends Model
+class TeacherWeekTimes extends Model
 {
     use HasFactory;
     protected $table = 'teacher_week_times';
@@ -24,5 +24,11 @@ class TeacherWeekTable extends Model
     public function classroom()
     {
         return $this->belongsTo(Classroom::class);
+    }
+
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
     }
 }

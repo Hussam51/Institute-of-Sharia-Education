@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Adviser;
 use App\Models\Classroom;
 use App\Models\Library;
+use App\Models\Monitor;
 use App\Models\Parents;
 use App\Models\Student;
 use App\Models\Subject;
@@ -38,6 +39,8 @@ class HomeController extends Controller
         $statistics['subjects']=Subject::count();
         $statistics['parents']=Parents::count();
         $statistics['advisers']=Adviser::where('department_id',$department_id)->count();
+        $statistics['monitors']=Monitor::where('department_id',$department_id)->count();
+
         $statistics['files']=Library::count();
         return view('home',compact('statistics'));
     }

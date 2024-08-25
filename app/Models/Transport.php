@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Bus extends Model
+class Transport extends Model
 {
     use HasFactory;
     protected $table='transports';
@@ -18,4 +18,10 @@ class Bus extends Model
         'vehicle_type',
         'department_id'
     ];
+
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'student_transports');
+    }
 }

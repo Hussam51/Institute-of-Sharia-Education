@@ -32,6 +32,31 @@ class Teacher extends Authenticatable implements JWTSubject
         return $this->belongsToMany(Classroom::class,'teacher_classrooms','teacher_id','classroom_id');
     }
 
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    public function duties()
+    {
+        return $this->hasMany(Homework::class);
+    }
+
+    public function student()
+    {
+        return $this->belongsToMany(Student::class, 'questions' );
+    }
+
+    public function teacherWeekTable()
+    {
+        return $this->hasMany(TeacherWeekTimes::class);
+    }
+
+    public function attendances(){
+
+        return $this->hasMany(TeacherAttendance::class,'teacher_id','id');
+    }
     
     public function getJWTIdentifier()
     {

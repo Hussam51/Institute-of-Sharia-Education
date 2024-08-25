@@ -81,10 +81,87 @@ class Student extends Authenticatable implements JWTSubject
         return $this->hasMany(Attendance::class,'student_id','id');
     }
 
+    // one to one  relationship between student and rating
+
+
+    public function consult(){
+
+        return $this->hasMany(Consult::class,'student_id','id');
+    }
+
     // one to one  relationship between student and parent
+   
+
+    public function transport()
+    {
+        return $this->belongsToMany(Transport::class, 'student_transports');
+    }
+
+
+    public function busNote(){
+
+        return $this->hasMany(StudentTransport::class,'student_id','id');
+    }
+
+    public function rating()
+    {
+        return $this->hasOne(Rating::class,'student_id');
+    }
+
+    public function ispresent($classroomId, $attendanceDate)
+    {
+        $attendance = Attendance::where('student_id', $this->id)
+            ->where('classroom_id', $classroomId)
+            ->where('attendance_date', $attendanceDate)
+            ->first();
+
+        return $attendance && $attendance->attendance_status == 'حاضر';
+    }
 
 
 
+    public function dutie()
+    {
+        return $this->hasMany(Homework::class);
+    }
+
+    public function homeworks()
+    {
+        return $this->hasMany(Homework::class, 'student_homeworks');
+    }
+
+    public function rates()
+    {
+        return $this->hasMany(Rating::class);
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
+
+    public function marks()
+    {
+        return $this->hasMany(Mark::class);
+    }
+//    }
+//    public function libraries()
+//    {
+//        return $this->hasMany(Library::class);
+//
+//    }
+
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class,'student_id','id');
+    }
+
+    public function teachers()
+    {
+        return $this->belongsToMany(Teacher::class, 'questions');
+    }
+    
 // jwt 
 
 

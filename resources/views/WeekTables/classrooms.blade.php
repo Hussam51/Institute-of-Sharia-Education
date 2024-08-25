@@ -56,7 +56,10 @@
                                         <td>{{ $i }}</td>
                                         <td>{{ $classroom->name }}</td>
                                         <td class="att">
-                                            <a href="{{route('dashboard.quiz_results.show',$classroom->id)}}" class="btn btn-success btn-sm" style="color: rgb(233, 255, 36);background-color: rgb(35, 107, 6)" class="fa-sm">  قائمة الدرجات   </a>
+                                            <a href="{{route('dashboard.quiz_results.show',$classroom->id)}}" class="btn btn-success btn-sm" style="color: rgb(149, 223, 134);background-color: rgb(128, 16, 219)" class="fa-sm">  قائمة الدرجات   </a>
+                                      
+                                            <a href="{{route('dashboard.ratings.show',$classroom->id)}}" class="btn btn-success btn-sm" style="color: rgb(231, 73, 10);background-color: rgb(12, 196, 187)" class="fa-sm">  نقاط الطلاب    </a>
+
                                         </td>
                                     </tr>
                                     

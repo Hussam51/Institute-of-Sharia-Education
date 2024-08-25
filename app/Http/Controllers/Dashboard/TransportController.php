@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Bus;
+use App\Models\Transport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class BusController extends Controller
+class TransportController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $buses=Bus::all();
+        $buses=Transport::all();
         return view('buses.index',compact('buses'));
     }
 
@@ -42,7 +42,7 @@ class BusController extends Controller
             
         ]);
         $validatedData['department_id']=Auth::user()->department_id;
-        Bus::create($validatedData);
+        Transport::create($validatedData);
         toastr('Bus Added Successfully');
         return redirect()->route('dashboard.buses.index');
     }
@@ -50,7 +50,7 @@ class BusController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Bus $bus)
+    public function show(Transport $bus)
     {
         return view('buses.show',compact('bus'));
     }
@@ -58,7 +58,7 @@ class BusController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Bus $bus)
+    public function edit(Transport $bus)
     {
        
        return view('buses.edit',compact('bus'));
@@ -67,7 +67,7 @@ class BusController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Bus $bus)
+    public function update(Request $request, Transport $bus)
     {
         $validatedData = $request->validate([
             
@@ -88,7 +88,7 @@ class BusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bus $bus)
+    public function destroy(Transport $bus)
     {
         $bus->delete();
         toastr('Bus Deleted Successfully');

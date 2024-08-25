@@ -68,7 +68,7 @@ class SubjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SubjectRepository $subjectRepository,updateSubjectRequest $request,Subject $subject)
+    public function update(SubjectRepository $subjectRepository,Request $request,Subject $subject)
     {
         try {
             $subjectRepository->update($request, $subject);

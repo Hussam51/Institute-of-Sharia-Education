@@ -7,7 +7,10 @@
 @endsection
 @section('page-header')
 <!-- breadcrumb -->
-الصفوف الدراسية/الحضور
+<h4 style="color: blue">  الصفوف الدراسية/الحضور
+ 
+ 
+</h4>
 @section('PageTitle')
     الصفوف الدراسية
 @stop
@@ -57,7 +60,7 @@
                                         <td>{{ $classroom->name }}</td>
                                         <td>{{ $classroom->department->name }}</td>
                                         <td class="att">
-                                            <a href="{{route('dashboard.attendences.show',$classroom->id)}}" style="color: rgb(255, 255, 255);background-color: rgb(255, 0, 0)" class="fa-sm"> ⚙ إدارة الحضور   </a>
+                                            <a href="{{route('dashboard.attendences.show',$classroom->id)}}" class="btn btn-info btn-sm" style="color: rgb(255, 255, 255);background-color: rgb(109, 119, 247)" class="fa-sm"> ⚙ إدارة الحضور   </a>
                                         </td>
                                     </tr>
                                     

@@ -14,10 +14,23 @@ class Department extends Model
     public function classrooms(){
         return $this->hasMany(Classroom::class,"department_id","id");
     }
+
+
     public function students(){
         return $this->hasMany(Student::class,"department_id","id");
     }
+
+
     public function admin(){
         return $this->hasOne(User::class,'department_id','id');
     }
+
+
+    public function exam()
+    {
+
+        return $this->hasMany(Exam::class, 'department_id', 'id');
+    }
+
+    
 }

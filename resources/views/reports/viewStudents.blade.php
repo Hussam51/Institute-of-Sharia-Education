@@ -22,11 +22,12 @@
                     <div class="col-xl-12 mb-30">
                         <div class="card card-statistics h-100">
                             <div class="card-body">
-                                <h3 style="color:blue"> Students Statistics Report</h3>
+                                <h5 style="color:blue"> تقرير احصائيات الحضور والغياب</h5>
+                                <br>
                                 <div class="table-responsive">
 
                                     @foreach ($class_students as $class)
-                                         <h4><i style="color: rgb(223, 58, 8)">Class :</i> {{ $class->name }}</h4>
+                                         <h4><i style="color: rgb(223, 58, 8)">الصف :</i> {{ $class->name }}</h4>
                                        
                                     <table cellpadding="12" cellspacing="4" border="1" 
                                            data-page-length="100"
@@ -44,7 +45,8 @@
                                             <th> اجمالي الغياب </th>
                                             <th>  الغياب المبرر </th>
                                             <th>  الغياب الغير المبرر </th>
-                                           
+                                            <th> اجمالي التأخر </th>
+
 
                                         </tr>
                                         </thead>
@@ -61,11 +63,12 @@
                                             <td class="mr-3">{{$student->data_birth}}</td>
                                             <td class="mr-3">{{$student->phone}}</td>
                                             <td class="mr-3">{{$student->email}}</td>
-                                            <td class="mr-3">{{$student->attendances()->where('attendance_status',1)->count()}}</td>
+                                            <td class="mr-3">{{$student->attendances()->where('attendance_status','حاضر')->count()}}</td>
 
-                                            <td class="mr-3">{{$student->attendances()->where('attendance_status',0)->count()}}</td>
-                                            <td class="mr-3">{{$student->attendances()->where('attendance_status',0)->whereNotNull('absent_reason')->count()}}</td>
-                                            <td class="mr-3">{{$student->attendances()->where('attendance_status',0)->whereNull('absent_reason')->count();}}</td>
+                                            <td class="mr-3">{{$student->attendances()->where('attendance_status','غياب')->count()}}</td>
+                                            <td class="mr-3">{{$student->attendances()->where('attendance_status','غياب')->whereNotNull('absent_reason')->count()}}</td>
+                                            <td class="mr-3">{{$student->attendances()->where('attendance_status','غياب')->whereNull('absent_reason')->count()}}</td>
+                                            <td class="mr-3">{{$student->attendances()->where('attendance_status','تأخر')->count()}}</td>
 
                                             </tr>
                                            <!-- delete_modal_Grade -->

@@ -50,7 +50,7 @@ public function class_students(string $id){
 
 public function class_teachers(string $id){
     
-    $classroom = Classroom::find($id)->first();
+    $classroom = Classroom::find($id);
         $class_teachers=$classroom->teachers;
   
     return $class_teachers;
@@ -64,7 +64,12 @@ public function class_teachers(string $id){
 
      
         try {
-
+            $validatedData = $request->validate([
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'password' => 'required|min:8',
+               'email'=> 'required|email',
+            ]);
 
             $parent = new Parents();
             $parent->first_name = $request->first_name;
@@ -124,8 +129,8 @@ public function class_teachers(string $id){
         try {
             $input=$request->except('image');
 
-            if ($request->phone) {
-                $input['password'] = Hash::make($request->phone);
+            if ($request->password) {
+                $input['password'] = Hash::make($request->password);
             }
             if ($img = $request->hasFile('image')) {
                 $this->deleteImage($parent->image);

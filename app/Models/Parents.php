@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-class Parents extends Model implements JWTSubject
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class Parents extends Authenticatable implements JWTSubject
 {
     use HasFactory;
 
@@ -49,6 +50,30 @@ class Parents extends Model implements JWTSubject
     public function student(){
         return $this->belongsTo(Student::class);
     }
+
+
+    public function feedback()
+    {
+        return $this->hasMany(ParentFeedback::class);
+    }
+
+
+    public function student_transport()
+    {
+        return $this->hasMany(StudentTransport::class);
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+   
 
     
 }

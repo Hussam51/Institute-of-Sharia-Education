@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('email')->unique();
             $table->string('password')->unique();
-            $table->string('fingerPrint')->nullable();
+           // $table->string('fingerPrint')->nullable();
             $table->timestamps();
         });
     }

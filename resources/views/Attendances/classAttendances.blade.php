@@ -68,14 +68,27 @@
 
                             <label class="block text-gray-500 font-semibold sm:border-r sm:pr-4">
                                 <input name="attendances[{{ $student->id }}]" disabled
-                                @checked($student->attendances()->first()->attendance_status == 1 )
+                                @checked($student->attendances()->first()->attendance_status == 'حاضر' )
                                        class="leading-tight" type="checkbox" value="presence">
                                 <span class="text-success">حضور</span>
                             </label>
+
+
+                         {{--            late          --}}
+
+                            <label class="block text-gray-500 font-semibold sm:border-r sm:pr-4">
+                                <input name="attendances[{{ $student->id }}]" disabled
+                                @checked($student->attendances()->first()->attendance_status =='تأخر' )
+                                       class="leading-tight" type="checkbox" value="late">
+                                <span class="text-success">تأخر</span>
+                            </label>
                            
+
+
+
                             <label class="ml-4 block text-gray-500 font-semibold">
                                 <input  name="attendances[{{ $student->id }}]" disabled 
-                                @checked($student->attendances()->first()->attendance_status == 0 )
+                                @checked($student->attendances()->first()->attendance_status == 'غياب' )
                                       
                                        class="leading-tight" type="checkbox" value="absent">
                                 <span class="text-danger">غياب</span>
@@ -96,6 +109,12 @@
                                 <input id="attendance_presence" name="attendances[{{ $student->id }}]" class="leading-tight" type="checkbox"
                                        value="presence">
                                 <span class="text-success">حضور</span>
+                            </label>
+
+                            <label class="block text-gray-500 font-semibold sm:border-r sm:pr-4">
+                                <input id="attendance_late" name="attendances[{{ $student->id }}]" class="leading-tight" type="checkbox"
+                                       value="late">
+                                <span class="text-success">تأخر</span>
                             </label>
 
                             <label class="ml-4 block text-gray-500 font-semibold">
@@ -150,19 +169,31 @@
         document.addEventListener('DOMContentLoaded', function () {
             var presenceCheckbox = document.getElementById('attendance_presence');
             var absentCheckbox = document.getElementById('attendance_absent');
-    
+            var lateCheckbox = document.getElementById('attendance_late');
+
             presenceCheckbox.addEventListener('change', function () {
                 if (presenceCheckbox.checked) {
                     $('#absent-reason').hide();
                     absentCheckbox.checked = false;
+                    lateCheckbox.checked=false;
+                }
+            });
 
+            lateCheckbox.addEventListener('change', function () {
+                if (lateCheckbox.checked) {
+                   
+                    absentCheckbox.checked = false;
+                    presenceCheckbox.checked = false;
+                    $('#absent-reason').hide();
                 }
             });
     
             absentCheckbox.addEventListener('change', function () {
                 if (absentCheckbox.checked) {
-                    presenceCheckbox.checked = false;
                     $('#absent-reason').show();
+                    presenceCheckbox.checked = false;
+                    lateCheckbox.checked=false;
+
                 }
             });
         });

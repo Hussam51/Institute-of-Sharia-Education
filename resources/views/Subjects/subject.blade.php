@@ -108,12 +108,12 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="Classroom_id">
-                                                          select classroom  :</label>
+                                                           اختر صف  :</label>
                                                         <select class="form-control" name="classroom_id"
                                                             id="Classroom_id" rows="3">
                                                             @foreach ($classrooms as $classroom)
 
-                                                            <option value="{{$classroom->id}}" @selected($subject->classroom_id==$classroom->id)> {{ $subject->classroom->name }}</option>
+                                                            <option value="{{$classroom->id}}" @selected($subject->classroom_id==$classroom->id)> {{ $classroom->name }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>

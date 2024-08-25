@@ -49,7 +49,9 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th> الإسم</th>
+                            <th> الاسم الاول</th>
+                            <th> الاسم الاخير</th>
+
                             <th>رقم الهاتف</th>
                             <th>الصورة الشخصية</th>
                             <th>العمليات</th>
@@ -61,7 +63,9 @@
                             <tr>
                                 <?php $i++; ?>
                                 <td>{{ $i }}</td>
-                                <td>{{ $adviser->name }}</td>
+                                <td>{{ $adviser->first_name }}</td>
+                                <td>{{ $adviser->last_name }}</td>
+
                                 <td>{{ $adviser->phone }}</td>
                                 <td><img src="{{ $adviser->getPhotoUrl()}}" alt="adviser Image" height="60px" width="60px"></td>
                                 <td>
@@ -98,14 +102,20 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <label for="Name"
-                                                            class="mr-sm-2">الإسم
+                                                            class="mr-sm-2">الاسم الاول
                                                             :</label>
-                                                        <input id="Name" type="text" name="name"
+                                                        <input id="Name" type="text" name="first_name"
                                                             class="form-control"
-                                                            value="{{old('name',$adviser->name)}}"
+                                                            value="{{old('first_name',$adviser->first_name)}}"
                                                             required>
                                                         <input id="id" type="hidden" name="id" class="form-control"
                                                             value="{{ $adviser->id }}">
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="lname" class="mr-sm-2">الاسم الاخير 
+                                                            :</label>
+                                                        <input id="lname" type="text" name="last_name" class="form-control"  value="{{old('last_name',$adviser->last_name)}}"
+                                                        required>
                                                     </div>
 
                                                 </div>
@@ -124,7 +134,7 @@
                                                         for="">كلمة المرور
                                                         :</label>
                                                         <input id="password" type="password" name="password"
-                                                        class="form-control fa-eye"required>
+                                                        class="form-control fa-eye">
                                                 </div>
 
                                                 <div class="form-group">
@@ -214,7 +224,13 @@
                         <div class="col">
                             <label for="Name" class="mr-sm-2">الاسم 
                                 :</label>
-                            <input id="Name" type="text" name="name" class="form-control">
+                            <input id="fname" type="text" name="first_name" class="form-control">
+                        </div>
+                        
+                        <div class="col">
+                            <label for="lname" class="mr-sm-2">الاسم الاخير 
+                                :</label>
+                            <input id="lname" type="text" name="last_name" class="form-control">
                         </div>
 
                     </div>

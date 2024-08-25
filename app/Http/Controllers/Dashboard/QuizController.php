@@ -40,12 +40,14 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
+
+       // dd($request->all());
         $validatedData = $request->validate([
             'subject_id' => 'required|exists:subjects,id',
             'classroom_id' => 'required|exists:classrooms,id',
             'min_mark' => 'numeric|required',
             'max_mark' => 'numeric|required',
-            'type' => 'in:probe_1,quiz_1,midterm_exam,probe_2,quiz_2,final_exam',
+            'type' => 'required',
            
         ]);
        $validatedData['department_id']=Auth::user()->department_id;
@@ -91,7 +93,7 @@ class QuizController extends Controller
             'classroom_id' => 'required|exists:classrooms,id',
             'min_mark' => 'numeric|required',
             'max_mark' => 'numeric|required',
-            'type' => 'in:probe_1,quiz_1 ,midterm_exam,probe_2,quiz_2,final_exam',
+            'type' => 'required',
            
         ]);
       

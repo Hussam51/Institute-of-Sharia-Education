@@ -76,9 +76,11 @@
                                 <label for="type"> حالة الطالب  : <span class="text-danger">*</span></label>
                                 <select class="custom-select mr-sm-3" name="status">
                                     <option disabled selected>--اختر الحالة</option>
-                                    <option value="absent" style="background-color: rgb(230, 13, 13)">غياب</option>
-                                    <option value="late" style="background-color: rgb(32, 91, 219)">تأخر</option>
-                                </select>
+                                    <option value="غياب" style="background-color: rgb(230, 13, 13)" >غياب</option>
+                                    <option value="حاضر" style="background-color: rgb(67, 170, 42)" >حاضر</option>
+                                    <option value="تأخر" style="background-color: rgb(65, 170, 91)" >تأخر</option>
+                                    <option value="إذن" style="background-color: rgb(32, 91, 219)">إذن</option>
+                               </select>
                             </div>
                         </div>
                         <div class="col-md-3">

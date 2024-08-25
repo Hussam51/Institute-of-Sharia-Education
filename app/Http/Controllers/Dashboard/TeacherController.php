@@ -50,6 +50,11 @@ class TeacherController extends Controller
        
         try{
 
+            $validatedData = $request->validate([
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'password' => 'required|min:8',
+            ]);
             DB::beginTransaction();
        // $teacher=Teacher::create($request->except('classrooms'));
         $teacher = new Teacher();
@@ -103,8 +108,8 @@ class TeacherController extends Controller
     { 
         $input=$request->except('classrooms','image');
 
-        if ($request->phone) {
-            $input['password'] = Hash::make($request->phone);
+        if ($request->password) {
+            $input['password'] = Hash::make($request->password);
         }
         if ($img = $request->hasFile('image')) {
             $this->deleteImage($teacher->image);

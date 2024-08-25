@@ -18,6 +18,11 @@ class StudentTransport extends Model
 
     public function transport()
     {
-        return $this->belongsTo(Bus::class);
+        return $this->belongsTo(Transport::class);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Parents::class);
     }
 }
